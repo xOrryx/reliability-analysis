@@ -1,0 +1,20 @@
+\begin{table}[t]
+\caption{Scene descriptors during tracking loss and during normal operation, February session. Values are medians over windows. AUC is the univariate area under the ROC curve for separating the two classes, reported so that 0.5 means no separation.}\label{tab:descriptors}
+\begin{tabular}{lrrr}
+\toprule
+Descriptor & Tracking loss & Normal & AUC \\
+\midrule
+Underexposed pixel fraction & 0.847 & 0.041 & 0.902 \\
+Brightness & 3.392 & 60.821 & 0.894 \\
+Entropy & 1.085 & 6.028 & 0.889 \\
+Contrast & 14.734 & 45.803 & 0.830 \\
+Dynamic range (P99--P1) & 30.000 & 179.000 & 0.800 \\
+Harris corners & 40.000 & 98.500 & 0.770 \\
+Sky fraction & 0.677 & 0.270 & 0.756 \\
+Snow fraction & 0.000 & 0.000 & 0.696 \\
+Overexposed pixel fraction & 0.000 & 0.001 & 0.635 \\
+Artificial light fraction & 0.000 & 0.000 & 0.591 \\
+Laplacian variance & 64.168 & 63.097 & 0.550 \\
+\bottomrule
+\end{tabular}
+\end{table}

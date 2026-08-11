@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{Detection of tracking loss from manual annotations and from automatic descriptors. All figures are leave-one-segment-out cross-validated. The first three rows are computed on the windows for which both feature sets are available (February session, $n=15,288$, of which 853 with loss of tracking); the values for the automatic descriptors therefore differ slightly from Table~\ref{tab:detector}, which uses the full February set. The last row shows the coverage advantage of the manual annotations, which exist for both sessions.}\label{tab:subj_vs_obj}
+\begin{tabular}{lccc}
+\toprule
+Feature set & AUC & \multicolumn{2}{c}{Specificity} \\
+\cmidrule(l){3-4}
+ & & at 80\,\% sens. & at 90\,\% sens. \\
+\midrule
+Manual annotations (111) & 0.746 & 25\,\% & 6\,\% \\
+Automatic descriptors (66) & 0.866 & 83\,\% & 60\,\% \\
+Both combined (177) & 0.818 & 51\,\% & 33\,\% \\
+\addlinespace
+Manual annotations, both sessions & 0.785 & 65\,\% & 5\,\% \\
+\bottomrule
+\end{tabular}
+\end{table}

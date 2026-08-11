@@ -1,0 +1,14 @@
+\begin{table}[t]
+\caption{Differential high-frequency jitter of the controllers with respect to the head, in millimetres, after correcting the constant yaw offset between the two reported coordinate frames. Because both poses are differenced in a common frame, body translation cancels and the residual reflects the controller estimate rather than the walker. Both controllers are pooled. Medians with 95\,\% block-bootstrap confidence intervals over segments.}\label{tab:ctrl_rel}
+\begin{tabular}{llccc}
+\toprule
+Session & Condition & Quest~2 & Quest~3 & Quest~Pro \\
+\midrule
+January & standing & -- & 0.75 (0.45--1.46) & 1.03 (0.75--1.79) \\
+ & walking & -- & 1.67 (1.46--5.34) & 6.32 (2.72--13.30) \\
+\addlinespace
+February & standing & 0.61 (0.48--0.89) & 0.71 (0.55--0.88) & 0.82 (0.45--1.02) \\
+ & walking & 2.31 (1.72--3.12) & 1.91 (1.82--3.91) & 5.45 (3.06--7.01) \\
+\bottomrule
+\end{tabular}
+\end{table}
