@@ -8,10 +8,32 @@ in the repository that some script did not write: delete `out/` and run
 `scripts/run_all.py`, and the tables, the figures and every figure quoted in the
 running text are rebuilt from the raw logs.
 
-The video side of the pipeline is a separate repository. This one starts from the
-pose logs and from the per-frame descriptor files that the MATLAB stage produces.
+The video side of the pipeline is the `scene-descriptors` repository:
+`video_Objective_extractor.m` computes the per-frame descriptors and
+`timeSynchronization.m` puts every stream on the video timeline. This repository
+starts from the pose logs and from the files that second script writes.
 
-## What it computes
+## Two measurements, kept apart
+
+The paper rests on two measurements that were made months apart, on different
+routes and on different firmware, and the code keeps them apart for the same
+reason the paper does.
+
+**The winter sessions** are the study proper: three headsets carried
+simultaneously along one outdoor route on two winter days, from daylight into
+complete darkness. They are what Sections 3.1 to 3.6 report, and they are handled
+by the `reliability` package.
+
+**The repeatability measurement** is supplementary, added during revision in
+answer to a reviewer. One wearer carried each headset in turn along a straight
+170 m stretch and walked it out and back ten times, on a lit route chosen so that
+tracking would not be lost. It is what Section 3.7 reports, and it is handled by
+the `repeatability` package. It was recorded on a later Horizon OS build than the
+winter sessions and under deliberately favourable conditions, so it characterises
+the pose the runtime delivers rather than its behaviour in an adverse scene, and
+it is never pooled with the winter data.
+
+## What the winter sessions measure
 
 Two quantities, kept apart on purpose:
 
@@ -22,24 +44,52 @@ Two quantities, kept apart on purpose:
 They are measured differently, they are in different units, and the analysis
 shows they are not two levels of one severity scale, so they are never combined.
 
+## What the repeatability measurement adds
+
+A third quantity the winter sessions cannot yield, because that route was
+traversed once and never returned to its start: **how far the reported position
+of a fixed physical point moves over the course of a recording.** It comes out at
+metres over kilometres, and it grows with the distance walked rather than
+scattering about a fixed value, so it is drift and not noise.
+
 ## Layout
 
 ```
 reliability/
-  config.py       every constant of the analysis; nothing is hard-coded elsewhere
+  config.py       every constant of the winter analysis; nothing hard-coded elsewhere
   windows.py      pose logs to windowed indicators, and episodes of tracking loss
   frames.py       controller frame correction, differential jitter, excursions
   scene.py        per-frame descriptors joined onto the pose windows
   annotations.py  manual scene annotations on the same window grid
   detect.py       leave-one-segment-out detection of tracking loss
   stats.py        block bootstrap, partial correlation, sign test, ROC helpers
+repeatability/
+  config.py       every constant of the repeatability analysis
+  io.py           raw pose logs, head pitch, native sampling rate
+  trim.py         frame resets and the off-route tail, detected from the trajectory
+  passes.py       recording -> ordered list of visits to the two marked points
+  drift.py        deviation, increment, leg distance, rigid frame decomposition
+  jumps.py        step changes of the reported position and their direction
 scripts/
   01_build.py     everything that reads raw data -> out/*.pkl, out/*.csv
   02_tables.py    the manuscript tables -> out/tex/*.tex and out/*.csv
   03_intext.py    every number in the running text -> out/intext.csv
   04_sweep.py     systematic test of scene effects on pose quality -> out/sweep.csv
   05_figures.py   the four figures -> out/figures/
-  run_all.py      all of the above, in order
+  06_sensitivity.py  the indicator against the high-pass cut-off
+  07_supplement.py   Online Resource 1 and 2
+  run_all.py      all of the above, then the repeatability stages if their data is present
+scripts/repeatability/
+  01_passes.py    visits to the marks -> out/repeatability/visits.csv
+  02_drift.py     deviation, increment, legs, frame transform, and Table 10
+  03_jumps.py     step changes, their heading and their cadence
+  04_figures.py   drift against distance, route against time, trimming before and after
+  05_controllers.py  how much of each recording the controllers were tracked at all
+  06_confound.py  head pitch per round trip; whether the devices overlap at all
+  check_pitch.py  pitch stability within a recording, run on demand
+  run_all.py      the six stages, in order
+out_reference/
+  the result of one complete run of both, kept so a later run can be diffed
 ```
 
 ## Data layout
@@ -61,6 +111,11 @@ Data_processed/time_sync/header_annotation.csv
 Data_processed/time_sync/<device>/<month>/sync_annotation_<segment>.csv
     one row per video frame: a timestamp on the pose clock and the manual
     scene attributes. Optional; without it the subjective sweep is skipped.
+
+repeatability/measHMD_<device>.csv
+    the repeatability recordings, one continuous log per device, in the same
+    29-column layout. Optional; without them Section 3.7 is not rebuilt and
+    scripts/run_all.py says so instead of skipping quietly.
 ```
 
 Devices are `MQ2`, `MQ3`, `MQPro`; months are `January` and `February`. Scene
@@ -73,11 +128,17 @@ pip install -r requirements.txt
 python scripts/run_all.py
 ```
 
-About four minutes on a laptop, most of it in the cross-validated detector.
+About four minutes on a laptop for the winter sessions, most of it in the
+cross-validated detector, and about a minute for the repeatability stages. Either
+half can also be run on its own:
+
+```
+python scripts/repeatability/run_all.py
+```
 
 ## The decisions that matter
 
-Four choices drive most of the results, and each one changed a conclusion when it
+Five choices drive most of the results, and each one changed a conclusion when it
 was made differently.
 
 **The jitter is the RMS after a 5 Hz high-pass, not after removing a straight
@@ -103,15 +164,40 @@ independent; on this data it makes the intervals about eight times too narrow.
 overexposed fraction, which uses the mean. Using the mean throughout costs about
 0.03 of area under the curve in the detector.
 
-## Reproducibility of the negative results
+**The repeatability figure is quoted from the increment between consecutive
+returns to a mark, not from the deviation from the first visit.** The wearer
+returns to the same physical point every time, so consecutive deviations are not
+independent and a standard deviation over them is not a summary of anything. The
+increments are approximately independent, and *n* is the number of round trips,
+not the number of one-way legs.
+
+## Two things worth reading before quoting a result
 
 `04_sweep.py` implements the test of whether the scene affects the quality of the
-pose. Read its docstring before quoting the result: an attribute with fewer than
-six usable groups cannot reach p < 0.05 by a sign test at all, and counting such
-attributes as null results would make the negative finding look stronger than the
-design supports. The script reports the tested, the testable and the passing
-counts separately, and `out/sweep.csv` holds the per-attribute effect size so the
-bound can be read off directly.
+pose. An attribute with fewer than six usable groups cannot reach p < 0.05 by a
+sign test at all, and counting such attributes as null results would make the
+negative finding look stronger than the design supports. The script reports the
+tested, the testable and the passing counts separately, and `out/sweep.csv` holds
+the per-attribute effect size so the bound can be read off directly.
+
+`scripts/repeatability/06_confound.py` exists because the repeatability
+measurement has a confound that no amount of statistics removes. The elevation of
+the headset's forward axis differs between the devices, at a median of −4.7° for
+the Quest 3 against −11.5° and −10.2° for the other two, and the ranges the
+devices cover over their individual round trips do not overlap at all. Where the
+cameras point decides which part of the scene the tracking solution is built on,
+so device and camera elevation are completely confounded, and the script says so
+rather than fitting a model that would extrapolate into a region where nothing
+was measured. The device difference in Section 3.7 is reported as a property of
+each headset as it is worn, not of its estimator.
+
+## What the repeatability package deliberately does not do
+
+It does not recompute `J_p` and `J_r` on the repeatability recordings. Those
+indicators are defined in `reliability/windows.py`, and implementing the same
+high-pass and the same windowing a second time is how two numbers that should
+agree start to disagree. If the jitter of those recordings is wanted, put them
+through the winter pipeline instead.
 
 ## Licence and citation
 
