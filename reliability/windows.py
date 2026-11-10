@@ -65,6 +65,36 @@ def quat_rate_deg(q: np.ndarray, dt: float) -> np.ndarray:
     return np.r_[ang[0], ang]
 
 
+def continuous_hemisphere(q: np.ndarray) -> np.ndarray:
+    """Flip quaternion signs so that consecutive samples lie in one hemisphere.
+
+    q and -q are the same rotation, but interpolating component-wise between
+    them passes through a near-zero quaternion. Making the sequence continuous
+    before interpolation removes that artefact.
+    """
+    q = q.copy()
+    d = np.sum(q[1:] * q[:-1], axis=1)
+    flip = np.cumsum(np.r_[0, (d < 0).astype(int)]) % 2 == 1
+    q[flip] *= -1
+    return q
+
+
+def quat_rate_vec_deg(q_xyzw: np.ndarray, dt: float) -> np.ndarray:
+    """Angular velocity VECTOR in deg/s between successive samples (body frame).
+
+    The relative rotation between consecutive quaternions is converted to a
+    rotation vector and divided by the interval. High-pass filtering the
+    components of this vector, rather than its magnitude, avoids rectifying the
+    gait oscillation: the magnitude of an oscillating rate is a rectified signal
+    whose harmonics reach above the cut-off (Reviewer 2, round 2).
+    """
+    from scipy.spatial.transform import Rotation
+    q = q_xyzw / np.linalg.norm(q_xyzw, axis=1, keepdims=True)
+    r = Rotation.from_quat(q)
+    w = np.degrees((r[:-1].inv() * r[1:]).as_rotvec()) / dt
+    return np.vstack([w[:1], w])
+
+
 def contiguous(mask: np.ndarray, min_len: int):
     out, i, n = [], 0, len(mask)
     while i < n:
@@ -124,11 +154,14 @@ def segment_windows(path, fc: float = None) -> pd.DataFrame:
         ok_raw = (a[:, s["track"]] == 1) & np.isfinite(a[:, s["pos"]]).all(axis=1)
         ok = np.interp(tt, t, ok_raw.astype(float)) > 0.999
         pos = np.column_stack([np.interp(tt, t, a[:, s["pos"]][:, k]) for k in range(3)])
-        rot = np.column_stack([np.interp(tt, t, a[:, s["rot"]][:, k]) for k in range(4)])
+        qraw = continuous_hemisphere(a[:, s["rot"]])
+        rot = np.column_stack([np.interp(tt, t, qraw[:, k]) for k in range(4)])
         ang = quat_rate_deg(rot[:, [3, 0, 1, 2]], dt)
+        angv = quat_rate_vec_deg(rot, dt)
         cols[f"ok_{name}"] = ok.astype(float)
         cols[f"_p_{name}"] = highpass_blocks(pos, ok, rate, fc)
-        cols[f"_r_{name}"] = highpass_blocks(ang[:, None], ok, rate, fc)[:, 0]
+        cols[f"_rm_{name}"] = highpass_blocks(ang[:, None], ok, rate, fc)[:, 0]
+        cols[f"_r_{name}"] = highpass_blocks(angv, ok, rate, fc)
 
     rows = []
     for s0 in np.arange(0, max(0, n - w), hop, dtype=int):
@@ -139,13 +172,16 @@ def segment_windows(path, fc: float = None) -> pd.DataFrame:
             r[f"f_track_{name}"] = float(cols[f"ok_{name}"][i].mean())
             p = cols[f"_p_{name}"][i]
             q = cols[f"_r_{name}"][i]
+            qm = cols[f"_rm_{name}"][i]
             good = np.isfinite(p).all(axis=1)
             if good.mean() >= C.MIN_VALID:
                 r[f"hp_pos_{name}"] = 100.0 * float(np.sqrt(np.nanmean(np.sum(p[good] ** 2, axis=1))))
-                r[f"hp_rot_{name}"] = float(np.sqrt(np.nanmean(q[good] ** 2)))
+                r[f"hp_rot_{name}"] = float(np.sqrt(np.nanmean(np.sum(q[good] ** 2, axis=1))))
+                r[f"hp_rotmag_{name}"] = float(np.sqrt(np.nanmean(qm[good] ** 2)))
             else:
                 r[f"hp_pos_{name}"] = np.nan
                 r[f"hp_rot_{name}"] = np.nan
+                r[f"hp_rotmag_{name}"] = np.nan
         rows.append(r)
 
     out = pd.DataFrame(rows)
