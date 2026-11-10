@@ -35,7 +35,8 @@ def rec(section, key, value, note=""):
 # ----------------------------------------------------------------- exposure
 def exposure(W, S):
     w = W[W.ui < 0.5]
-    rec("3", "exposure_s", round(float(w.hop_s.iloc[0]) * len(w), 0))
+    rec("3", "exposure_s", round(float(sum(float(s.hop_s.iloc[0]) * len(s)
+                                         for _, s in w.groupby(["dev", "month", "seg"]))), 0))
     rec("3", "windows_total", len(W))
     rec("3", "windows_with_scene", len(S))
     rec("2.4.2", "rate_median_hz", round(float(W[W.month == "February"].rate.median()), 1))

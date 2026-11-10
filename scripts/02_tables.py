@@ -92,7 +92,9 @@ def table_episodes(W, E):
     rows = []
     for (dev, mon), g in W[W.ui < 0.5].groupby(["dev", "month"]):
         e = E[(E.dev == dev) & (E.month == mon)]
-        expo = float(g.hop_s.iloc[0]) * len(g)
+        # hop per segment: the January Quest Pro recordings change rate between
+        # the two parts of the day (35.7 and 45.5 Hz), so one hop does not fit all
+        expo = float(sum(float(s.hop_s.iloc[0]) * len(s) for _, s in g.groupby("seg")))
         if not len(e):
             continue
         rows.append(dict(dev=dev, month=mon, exposure_s=expo, episodes=len(e),
