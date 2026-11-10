@@ -18,6 +18,8 @@ from pathlib import Path
 #                       <DATA_ROOT>/Data_processed/time_sync/<dev>/February/sync_video_*.csv
 DATA_ROOT = Path(__file__).resolve().parents[1] / "data"
 OUT = Path(__file__).resolve().parents[1] / "out"
+# Measured offset between video time and pose-log time, per segment (sync.py).
+VIDEO_OFFSETS = Path(__file__).resolve().parents[1] / "sync" / "video_offsets.csv"
 
 DEVICES = ("MQ2", "MQ3", "MQPro")
 MONTHS = ("January", "February")

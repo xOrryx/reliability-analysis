@@ -9,8 +9,9 @@
 """Scene description attached to pose windows.
 
 Input is the per-frame descriptor table produced by the MATLAB stage, one row per
-video frame, already time-synchronised so that Time_s = 0 is the first sample of
-the matching pose log. Each pose window then takes the aggregate of every
+video frame, with Time_s = 0 at the first decoded frame of the cut video. Video
+time is placed on the pose clock by sync.video_to_log, using the offset measured
+for that segment (sync/video_offsets.csv). Each pose window then takes the aggregate of every
 descriptor over the video frames whose timestamp falls inside that window, using
 the median for all descriptors except the overexposed fraction, for which the
 mean is used, following Eq. (7) of the manuscript.
@@ -23,7 +24,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from . import config as C
+from . import config as C, sync
 
 
 def header(root: Path = None):
@@ -58,7 +59,7 @@ def build(W: pd.DataFrame, root: Path = None, month: str = "February") -> pd.Dat
             continue
         g = g.sort_values("t").reset_index(drop=True)
         v = pd.read_csv(f, header=None, names=cols)
-        ts = v.Time_s.to_numpy(float) + float(g.t.min())
+        ts = sync.video_to_log(dev, month, int(seg), v.Time_s.to_numpy(float), root)
         X = v[desc].to_numpy(float)
         lo = np.searchsorted(ts, g.t.to_numpy() - half)
         hi = np.searchsorted(ts, g.t.to_numpy() + half)

@@ -14,17 +14,21 @@ flag per frame; a window takes the mean of the flag over its frames, so an
 attribute that holds for the whole window is 1 and one that changes inside the
 window takes an intermediate value.
 
-Expected input, one file per recording, first column a timestamp already on the
-pose clock:
-    Data_processed/time_sync/<device>/<month>/sync_annotation_<segment>.csv
-with the column names given in Data_processed/time_sync/header_annotation.csv.
+Input is what timeSynchronization.m writes, one file per recording:
+    Data_processed/time_sync/<device>/<month>/sync_anotation_<segment>.csv
+first column the video time of the cut segment (the same time base as the scene
+descriptors), then the manual attributes, with the three-row header in
+Data_processed/time_sync/header_annotation.csv. The attribute name is the third
+header row (HMD_..., LEFT_..., RIGHT_...); a name that repeats is numbered.
+Video time is placed on the pose clock by sync.video_to_log(kind="annotations"),
+which accounts for the annotation having been made on the time of the cut file.
 """
 from __future__ import annotations
 from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from . import config as C
+from . import config as C, sync
 
 RESERVED = ("t", "time", "time [s]", "time_video [s]", "c1", "c113")
 
@@ -56,20 +60,35 @@ def window_one(raw: pd.DataFrame, w: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
+def attribute_names(root: Path = None):
+    """Column names of the annotation files: third header row, repeats numbered."""
+    root = Path(root or C.DATA_ROOT)
+    h = pd.read_csv(root / "Data_processed" / "time_sync" / "header_annotation.csv",
+                    header=None, nrows=3, dtype=str).fillna("")
+    names, seen = [], {}
+    for j in range(h.shape[1]):
+        v = h.iat[2, j].strip() or h.iat[0, j].strip() or f"c{j + 1}"
+        seen[v] = seen.get(v, 0) + 1
+        names.append(v if seen[v] == 1 else f"{v}_{seen[v]}")
+    names[0] = "t"
+    return names
+
+
 def build(W: pd.DataFrame, root: Path = None) -> pd.DataFrame:
     root = Path(root or C.DATA_ROOT)
-    head = pd.read_csv(root / "Data_processed" / "time_sync" / "header_annotation.csv",
-                       header=[0, 1, 2], nrows=0)
-    names = [" ".join(str(x) for x in c if "Unnamed" not in str(x)).strip()
-             for c in head.columns]
+    names = attribute_names(root)
     frames = []
     for (dev, mon, seg), g in W[W.ui < 0.5].groupby(["dev", "month", "seg"]):
-        f = (root / "Data_processed" / "time_sync" / dev / mon
-             / f"sync_annotation_{seg}.csv")
+        d0 = root / "Data_processed" / "time_sync" / dev / mon
+        f = d0 / f"sync_anotation_{seg}.csv"
+        if not f.exists():
+            f = d0 / f"sync_annotation_{seg}.csv"
         if not f.exists():
             continue
-        raw = pd.read_csv(f, header=None, names=names)
-        raw = raw.rename(columns={names[0]: "t"})
+        raw = pd.read_csv(f, header=None)
+        raw.columns = names[:raw.shape[1]]
+        raw["t"] = sync.video_to_log(dev, mon, int(seg), raw["t"].to_numpy(float),
+                                     root, kind="annotations")
         d = window_one(raw, g)
         d["dev"], d["month"], d["seg"] = dev, mon, seg
         frames.append(d)
