@@ -91,10 +91,12 @@ def table_excursions(X):
     rows = []
     for (dev, mon, seg), g in X.groupby(["dev", "month", "seg"]):
         rows.append(dict(device=dev, session=mon, segment=seg, events=len(g),
+                         both_hands=int(g.both_hands.sum()),
+                         recovered=int(g.recovered.sum()),
                          median_m=g.excursion_m.median(),
                          max_m=g.excursion_m.max(),
-                         median_recovery_s=g.recover_s.median(),
-                         tracked_pct=g.tracked_during.median()))
+                         median_recovery_s=g[g.recovered].recover_s.median(),
+                         tracked_pct=g.tracked_frac.median()))
     order = {"January": 0, "February": 1}
     return pd.DataFrame(rows).sort_values(
         ["session", "device", "segment"], key=lambda s: s.map(order).fillna(s))
@@ -284,30 +286,38 @@ figures of the main text are built.
 
     parts.append(r"\section*{Table S6: Controller excursions}")
     parts.append(
-        "Summary by recording of the events in which the reported controller "
-        "position departs from its recording-specific offset to the headset by "
-        f"more than {C.MIN_EXCURSION_M}~m and then returns, while the device "
-        "continues to report the controller as tracked. The complete list of the "
-        f"{meta['n_events']} individual events is provided as Online Resource 2, "
-        "one row per event, with the columns: \\texttt{hand}, left or right; "
-        "\\texttt{t}, the time of the event within the recording in seconds; "
-        "\\texttt{jump\\_m}, the largest change of the reported controller position "
-        "between two consecutive samples, in metres; \\texttt{excursion\\_m}, the "
-        "largest departure of the controller-to-headset offset from its "
-        "recording-specific baseline, in metres; \\texttt{recover\\_s}, the time "
-        "taken for that offset to return to the baseline, in seconds; "
-        "\\texttt{tracked\\_during}, the percentage of samples during the event for "
-        "which the device reported the controller as tracked; and "
-        "\\texttt{dev}, \\texttt{month} and \\texttt{seg}, identifying the recording. "
-        "The two distance columns are distinct: the first is a single-sample "
-        "discontinuity, the second is how far the pose was wrong and for how long.")
+        "Summary by recording of the events in which a controller position jumps "
+        f"by more than {C.JUMP_MIN_M}~m between consecutive samples while the "
+        f"headset moves by less than {C.HEAD_MAX_M}~m, and the controller-to-"
+        f"headset offset departs by at least {C.MIN_EXCURSION_M}~m from its value "
+        "over the preceding 5~s. The offset is computed after aligning the headset "
+        "and controller frames separately for every interval between two "
+        "re-anchorings of the headset world. An event ends when the offset is back "
+        f"within {C.RECOVER_TOL_M}~m of that value; events that do not return within "
+        "120~s are counted as not recovered. A jump of both controllers within 1~s "
+        "by the same vector is one event. The complete list of the "
+        f"{meta['n_events']} events is provided as Online Resource 2, one row per "
+        "event, with the columns: \\texttt{hand}, the controller that triggered the "
+        "event; \\texttt{t}, time within the recording in seconds; "
+        "\\texttt{jump\\_m}, the single-sample jump in metres; "
+        "\\texttt{excursion\\_m}, the largest departure of the offset in metres; "
+        "\\texttt{recovered} and \\texttt{recover\\_s}, whether and after how many "
+        "seconds the offset returned; \\texttt{both\\_hands}, whether the other "
+        "controller jumped with it; \\texttt{tracked\\_at\\_jump} and "
+        "\\texttt{tracked\\_frac}, the controller tracking flag at the jump and the "
+        "percentage of event samples reported as tracked; "
+        "\\texttt{headset\\_tracked\\_frac}, the same for the headset; "
+        "\\texttt{piece}, the frame-alignment interval; and \\texttt{dev}, "
+        "\\texttt{month}, \\texttt{seg}, identifying the recording.")
     parts.append(tex_longtable(
-        S6, "llrrrrrr",
-        r"Device & Session & Seg. & Events & Median [m] & Max [m] & "
+        S6, "llrrrrrrrr",
+        r"Device & Session & Seg. & Events & Both & Recov. & Median [m] & Max [m] & "
         r"Recovery [s] & Tracked [\%]",
         lambda r: (f"{LABEL[r.device]} & {r.session[:3]} & {int(r.segment)} & "
-                   f"{int(r.events)} & {r.median_m:.2f} & {r.max_m:.1f} & "
-                   f"{r.median_recovery_s:.1f} & {r.tracked_pct:.0f}"),
+                   f"{int(r.events)} & {int(r.both_hands)} & {int(r.recovered)} & "
+                   f"{r.median_m:.2f} & {r.max_m:.1f} & "
+                   f"{'--' if pd.isna(r.median_recovery_s) else f'{r.median_recovery_s:.1f}'} & "
+                   f"{r.tracked_pct:.0f}"),
         "Controller excursions by recording.", "tab:S6", small=True))
 
     parts.append(r"\end{document}")
@@ -318,7 +328,7 @@ def main():
     W = pd.read_pickle(C.OUT / "windows.pkl")
     S = pd.read_pickle(C.OUT / "scene.pkl")
     E = pd.read_csv(C.OUT / "episodes.csv")
-    X = pd.read_csv(C.OUT / "controller_events.csv")
+    X = pd.read_csv(C.OUT / "controller_events_v2.csv")
     SW = pd.read_csv(C.OUT / "sweep.csv")
     FC = pd.read_csv(C.OUT / "fc_sensitivity.csv")
 

@@ -185,22 +185,28 @@ def controllers(F, J, X, W):
     rec("3.4", "implied_hand_speed_median_ms",
         round(float(np.median(J.speed_implied[~irregular])), 1))
     rec("3.4", "controller_events", len(X))
+    rec("3.4", "controller_events_both_hands", int(X.both_hands.sum()))
+    rec("3.4", "controller_events_recovered", int(X.recovered.sum()))
     for dev in C.DEVICES:
         x = X[X.dev == dev]
         if len(x):
+            r = x[x.recovered]
             rec("3.4", f"events_{dev}",
-                f"n={len(x)}, median excursion {x.excursion_m.median():.2f} m, "
-                f"max {x.excursion_m.max():.1f} m, median recovery {x.recover_s.median():.1f} s")
-    rec("3.4", "tracked_during_events_median_pct",
-        round(float(X.tracked_during.median()), 0))
+                f"n={len(x)}, both hands {int(x.both_hands.sum())}, recovered {len(r)}, "
+                f"median excursion {x.excursion_m.median():.2f} m, max {x.excursion_m.max():.1f} m, "
+                f"median recovery {r.recover_s.median():.1f} s, "
+                f"tracked throughout {int((x.tracked_frac >= 99.999).sum())}")
+    rec("3.4", "events_with_headset_tracking_ok", int((X.headset_tracked_frac >= 99.999).sum()))
 
-    key = W.set_index(["dev", "month", "seg"])
-    ok = []
-    for _, r in X.iterrows():
-        g = W[(W.dev == r.dev) & (W.month == r.month) & (W.seg == r.seg)]
-        i = (g.t - r.t).abs().idxmin()
-        ok.append(float(g.loc[i, "f_track_hmd"]) > 0.99)
-    rec("3.4", "events_with_headset_tracking_ok", int(np.sum(ok)))
+    F2 = pd.read_csv(C.OUT / "frames_v2.csv")
+    near2 = (F2.yaw_deg / 45.0).round() * 45.0
+    close2 = (F2.yaw_deg - near2).abs() < 10.0
+    rec("2.4.1", "frame_pieces", len(F2), "yaw fits per piece between re-anchorings")
+    rec("2.4.1", "frame_pieces_near_multiple_of_45", int(close2.sum()))
+    rec("2.4.1", "frame_pieces_multiples", sorted(set(near2[close2].astype(int))))
+    rec("2.4.1", "frame_pieces_resid_max_m", round(float(F2.resid_m.max()), 2))
+    rec("2.4.1", "recordings_with_reanchoring",
+        int((F2.groupby(["dev", "month", "seg"]).piece.nunique() > 1).sum()))
 
 
 def coupling(W, Rl):
@@ -227,7 +233,7 @@ def main():
     E = pd.read_csv(C.OUT / "episodes.csv")
     F = pd.read_csv(C.OUT / "frames.csv")
     J = pd.read_csv(C.OUT / "controller_jumps.csv")
-    X = pd.read_csv(C.OUT / "controller_events.csv")
+    X = pd.read_csv(C.OUT / "controller_events_v2.csv")
 
     exposure(W, S)
     gait()

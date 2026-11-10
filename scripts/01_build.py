@@ -16,7 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import pandas as pd
-from reliability import config as C, windows, frames, scene, annotations
+from reliability import config as C, windows, frames, scene, annotations, excursions
 
 C.OUT.mkdir(exist_ok=True)
 
@@ -47,7 +47,14 @@ def main():
     J, X = frames.build_excursions()
     J.to_csv(C.OUT / "controller_jumps.csv", index=False)
     X.to_csv(C.OUT / "controller_events.csv", index=False)
-    print(f"  {len(J)} single-sample jumps, {len(X)} merged events")
+    print(f"  {len(J)} single-sample jumps, {len(X)} merged events (first definition)")
+
+    print("controller excursions, revised definition ...", flush=True)
+    X2, F2 = excursions.build()
+    X2.to_csv(C.OUT / "controller_events_v2.csv", index=False)
+    F2.to_csv(C.OUT / "frames_v2.csv", index=False)
+    print(f"  {len(X2)} events, {int(X2.both_hands.sum())} with both hands, "
+          f"{int(X2.recovered.sum())} recovered; {len(F2)} frame fits")
 
     print("scene descriptors ...", flush=True)
     S = scene.build(W)
