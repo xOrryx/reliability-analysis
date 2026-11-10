@@ -288,7 +288,19 @@ figures of the main text are built.
         "position departs from its recording-specific offset to the headset by "
         f"more than {C.MIN_EXCURSION_M}~m and then returns, while the device "
         "continues to report the controller as tracked. The complete list of the "
-        f"{meta['n_events']} individual events is provided as Online Resource 2.")
+        f"{meta['n_events']} individual events is provided as Online Resource 2, "
+        "one row per event, with the columns: \\texttt{hand}, left or right; "
+        "\\texttt{t}, the time of the event within the recording in seconds; "
+        "\\texttt{jump\\_m}, the largest change of the reported controller position "
+        "between two consecutive samples, in metres; \\texttt{excursion\\_m}, the "
+        "largest departure of the controller-to-headset offset from its "
+        "recording-specific baseline, in metres; \\texttt{recover\\_s}, the time "
+        "taken for that offset to return to the baseline, in seconds; "
+        "\\texttt{tracked\\_during}, the percentage of samples during the event for "
+        "which the device reported the controller as tracked; and "
+        "\\texttt{dev}, \\texttt{month} and \\texttt{seg}, identifying the recording. "
+        "The two distance columns are distinct: the first is a single-sample "
+        "discontinuity, the second is how far the pose was wrong and for how long.")
     parts.append(tex_longtable(
         S6, "llrrrrrr",
         r"Device & Session & Seg. & Events & Median [m] & Max [m] & "

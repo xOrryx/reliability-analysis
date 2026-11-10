@@ -14,7 +14,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 STAGES = ("01_passes.py", "02_drift.py", "03_jumps.py", "04_figures.py",
-          "05_controllers.py", "06_confound.py")
+          "05_controllers.py", "06_confound.py", "07_supplement.py")
 
 
 def main():
