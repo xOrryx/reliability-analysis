@@ -18,10 +18,12 @@ about 1.7 to 1.9 Hz, so the window holds roughly two full periods and a fitted
 straight line removes almost none of it. A 5 Hz high-pass lies above that band
 and below the band the estimator noise occupies.
 
-Why the native timeline. The runtime delivers poses at a non-uniform period.
-Resampling onto a common grid would alter exactly the high-frequency content the
-indicator is meant to measure, so the pose stream is windowed on its own grid,
-derived from the measured rate of each recording.
+Sampling grid. The logged intervals are irregular (frame time at 1 ms
+resolution, dropped frames on the Quest Pro). Each recording is linearly
+interpolated onto a uniform grid at its own median logging period, so that the
+filter and the window length are defined in seconds on every device. The
+timing error this leaves in the indicator is estimated in
+analysis_kolo2/R2_4a_timing (0.4-0.65 mm of J_p during walking).
 """
 from __future__ import annotations
 from pathlib import Path

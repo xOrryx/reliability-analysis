@@ -1,0 +1,10 @@
+recordings: 30
+pieces: 46; hand fits: 92
+recordings with >1 piece: 12
+pieces per recording: max 3
+hand fits within 10 deg of a multiple of 45: 90 of 92
+multiples among those: -135: 14, -45: 34, 0: 42
+outside 10 deg: MQPro February seg2 L piece1 yaw=-77.4 resid=0.02 dur=18s; MQPro February seg2 R piece1 yaw=-55.1 resid=0.04 dur=18s
+deviation from multiple, within set: median 0.07 deg, max 7.55 deg
+horizontal residual [m]: median 0.17 (IQR 0.10-0.21), max 0.31
+piece transitions (per hand): 32; with a change of the 45-deg multiple: 4
