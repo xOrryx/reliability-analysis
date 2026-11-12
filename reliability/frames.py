@@ -99,14 +99,20 @@ def recording_frames(path):
     return out
 
 
-def controller_relative(path, fc: float = None) -> pd.DataFrame:
+def controller_relative(path, fc: float = None, piecewise: bool = True) -> pd.DataFrame:
     """Windowed differential jitter of each controller with respect to the head.
 
     The differential signal is filtered and reduced exactly like a pose: the
     high-pass runs on each contiguous block in which both the headset and that
     controller were tracked, the transient is trimmed, and the window value is
     the RMS over the window. Units are centimetres.
+
+    piecewise=True aligns the controller frame separately in every piece
+    between re-anchorings of the headset world (excursions.aligned_controller),
+    as described in Section 2.4.1 of the paper. piecewise=False uses one yaw per
+    recording (the first version of the analysis).
     """
+    from .excursions import aligned_controller
     a = load_segment(path)
     t = a[:, C.COL_TIME]
     rate = native_rate(t)
@@ -123,9 +129,18 @@ def controller_relative(path, fc: float = None) -> pd.DataFrame:
     d = np.linalg.norm(np.diff(H, axis=0), axis=1) * rate
     speed = np.r_[d[0], d]
 
-    yaws = recording_frames(path)
+    yaws = None if piecewise else recording_frames(path)
     cols = {"t": tt, "speed": speed, "ui": ui.astype(float)}
     for hand in ("left", "right"):
+        if piecewise:
+            Pr = aligned_controller(a, hand)
+            fin = np.isfinite(Pr).all(axis=1)
+            Pr = np.where(fin[:, None], Pr, 0.0)
+            P = np.column_stack([np.interp(tt, t, Pr[:, k]) for k in range(3)])
+            ok = (np.interp(tt, t, (_valid(a, hand) & fin).astype(float)) > 0.999) & okh
+            cols[f"_d_{hand}"] = P - H
+            cols[f"_ok_{hand}"] = ok
+            continue
         yaw = yaws[hand][0]
         if not np.isfinite(yaw):
             cols[f"_d_{hand}"] = np.full((len(tt), 3), np.nan)

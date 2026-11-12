@@ -104,6 +104,29 @@ def pieces(H, okh):
     return list(zip(b[:-1], b[1:]))
 
 
+def aligned_controller(a, hand):
+    """Controller position in the headset frame, aligned piece by piece.
+
+    Returns an array like the raw controller position, with the yaw and the
+    horizontal translation of each piece applied, and NaN in pieces too short
+    to fit (fewer than 100 samples with both bodies tracked).
+    """
+    H = a[:, C.PARTS["hmd"]["pos"]]
+    okh = _valid(a, "hmd")
+    okc = _valid(a, hand)
+    P = a[:, C.PARTS[hand]["pos"]]
+    Pc = np.full_like(P, np.nan)
+    for i0, i1 in pieces(H, okh):
+        m = np.zeros(len(P), bool); m[i0:i1] = True; m &= okh & okc
+        if m.sum() < 100:
+            continue
+        th, tr, _ = robust_frame(P[m][:, [0, 2]], H[m][:, [0, 2]])
+        xz = _rot(P[i0:i1][:, [0, 2]], th) + tr
+        Pc[i0:i1, 0], Pc[i0:i1, 2] = xz[:, 0], xz[:, 1]
+        Pc[i0:i1, 1] = P[i0:i1, 1]
+    return Pc
+
+
 def recording_events(path):
     a = load_segment(path)
     t = a[:, C.COL_TIME]
