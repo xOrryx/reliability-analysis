@@ -65,7 +65,7 @@ def gait(root=None):
                     peaks.append(float(fr[band][np.argmax(px[band])]))
         if peaks:
             rec("2.4.2", f"gait_peak_hz_{dev}", round(float(np.median(peaks)), 2),
-                f"{len(peaks)} recordings")
+                f"{len(peaks)} walking blocks of 10 s or more")
 
 
 # ----------------------------------------------------------------- episodes

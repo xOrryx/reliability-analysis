@@ -27,8 +27,8 @@ manuscript: the descriptors of the scene during a loss of tracking, the
 systematic test of whether the scene affects the quality of the pose, a summary
 of the individual recordings, the episodes of tracking loss, the sensitivity of
 the reported indicator to the cut-off frequency of the filter that defines it,
-and a summary of the controller excursions. Each table is referenced from the
-main text.
+a summary of the controller excursions, and the repeatability measurement of
+Section~3.7 visit by visit. Each table is referenced from the main text.
 
 Every value in this document was produced by the analysis scripts that accompany
 the article, from the same intermediate results from which the tables and the
@@ -37,7 +37,7 @@ figures of the main text are built.
 
 \section*{Table S1: Scene descriptors during tracking loss}
 
-The main manuscript reports the eleven descriptors that separate the two classes most sharply. The table below reports all 67 of them: the median over windows in which tracking was lost, the median over the remainder, and the univariate area under the ROC curve, oriented so that $0.5$ means no separation. February session, 15\,410 windows of which 853 with tracking lost.
+The main manuscript reports the eleven descriptors that separate the two classes most sharply. The table below reports all 67 of them: the median over windows in which tracking was lost, the median over the remainder, and the univariate area under the ROC curve, oriented so that $0.5$ means no separation. February session, 15\,404 windows of which 853 with tracking lost.
 
 \begin{longtable}{lrrr}
 \caption{Scene descriptors during tracking loss and during normal operation, all descriptors.}\label{tab:S1}\\
@@ -55,70 +55,70 @@ Descriptor & Tracking loss & Normal & AUC \\
 \endfoot
 \bottomrule
 \endlastfoot
-underexposed fraction & 0.847 & 0.041 & 0.902 \\
-brightness & 3.392 & 60.821 & 0.894 \\
-entropy & 1.085 & 6.028 & 0.889 \\
-contrast & 14.734 & 45.803 & 0.830 \\
-dynamic range (P99--P1) & 30.000 & 179.000 & 0.800 \\
-Harris corners & 40.000 & 98.500 & 0.770 \\
+underexposed fraction & 0.847 & 0.041 & 0.903 \\
+brightness & 3.234 & 61.040 & 0.899 \\
+entropy & 1.060 & 6.026 & 0.896 \\
+contrast & 13.845 & 45.734 & 0.840 \\
+dynamic range (P99--P1) & 25.000 & 179.000 & 0.809 \\
+Harris corners & 39.000 & 99.000 & 0.774 \\
 sky other fraction & 0.677 & 0.270 & 0.756 \\
-tree fraction & 0.000 & 0.006 & 0.731 \\
-building other fraction & 0.000 & 0.000 & 0.711 \\
-snow fraction & 0.000 & 0.000 & 0.696 \\
-road fraction & 0.000 & 0.000 & 0.675 \\
-pavement fraction & 0.000 & 0.000 & 0.650 \\
-overexposed fraction & 0.000 & 0.001 & 0.635 \\
-car fraction & 0.000 & 0.000 & 0.630 \\
-metal fraction & 0.000 & 0.000 & 0.622 \\
-wall concrete fraction & 0.000 & 0.000 & 0.616 \\
+tree fraction & 0.000 & 0.006 & 0.735 \\
+building other fraction & 0.000 & 0.000 & 0.714 \\
+snow fraction & 0.000 & 0.000 & 0.699 \\
+road fraction & 0.000 & 0.000 & 0.679 \\
+pavement fraction & 0.000 & 0.000 & 0.652 \\
+overexposed fraction & 0.000 & 0.001 & 0.636 \\
+car fraction & 0.000 & 0.000 & 0.629 \\
+metal fraction & 0.000 & 0.000 & 0.628 \\
+wall concrete fraction & 0.000 & 0.000 & 0.623 \\
+grass fraction & 0.000 & 0.000 & 0.598 \\
 wall other fraction & 0.003 & 0.000 & 0.594 \\
-light fraction & 0.000 & 0.000 & 0.591 \\
-grass fraction & 0.000 & 0.000 & 0.591 \\
 mountain fraction & 0.000 & 0.000 & 0.589 \\
-ground other fraction & 0.000 & 0.000 & 0.577 \\
-fence fraction & 0.000 & 0.000 & 0.563 \\
-person fraction & 0.102 & 0.063 & 0.561 \\
-Laplacian variance & 64.168 & 63.097 & 0.550 \\
-house fraction & 0.000 & 0.000 & 0.542 \\
-rock fraction & 0.000 & 0.000 & 0.542 \\
+light fraction & 0.000 & 0.000 & 0.586 \\
+ground other fraction & 0.000 & 0.000 & 0.583 \\
+person fraction & 0.110 & 0.063 & 0.564 \\
+fence fraction & 0.000 & 0.000 & 0.564 \\
+ceiling other fraction & 0.000 & 0.000 & 0.543 \\
+house fraction & 0.000 & 0.000 & 0.543 \\
+rock fraction & 0.000 & 0.000 & 0.541 \\
+Laplacian variance & 65.290 & 63.030 & 0.540 \\
 clouds fraction & 0.000 & 0.000 & 0.540 \\
-ceiling other fraction & 0.000 & 0.000 & 0.536 \\
-truck fraction & 0.000 & 0.000 & 0.535 \\
-dynamic range (max--min) & 255.000 & 255.000 & 0.533 \\
-fog fraction & 0.000 & 0.000 & 0.531 \\
+dynamic range (max--min) & 255.000 & 255.000 & 0.535 \\
+truck fraction & 0.000 & 0.000 & 0.534 \\
 wall tile fraction & 0.000 & 0.000 & 0.530 \\
+fog fraction & 0.000 & 0.000 & 0.529 \\
 floor tile fraction & 0.000 & 0.000 & 0.526 \\
-window other fraction & 0.000 & 0.000 & 0.523 \\
-floor other fraction & 0.000 & 0.000 & 0.521 \\
+window other fraction & 0.000 & 0.000 & 0.525 \\
+floor other fraction & 0.000 & 0.000 & 0.522 \\
+dirt fraction & 0.000 & 0.000 & 0.521 \\
 bush fraction & 0.000 & 0.000 & 0.520 \\
-dirt fraction & 0.000 & 0.000 & 0.519 \\
+floor wood fraction & 0.000 & 0.000 & 0.520 \\
+motorcycle fraction & 0.000 & 0.000 & 0.520 \\
 wall brick fraction & 0.000 & 0.000 & 0.518 \\
-motorcycle fraction & 0.000 & 0.000 & 0.517 \\
-floor wood fraction & 0.000 & 0.000 & 0.515 \\
 wall wood fraction & 0.000 & 0.000 & 0.513 \\
 wall stone fraction & 0.000 & 0.000 & 0.512 \\
-branch fraction & 0.000 & 0.000 & 0.509 \\
+branch fraction & 0.000 & 0.000 & 0.510 \\
 hill fraction & 0.000 & 0.000 & 0.507 \\
-stairs fraction & 0.000 & 0.000 & 0.506 \\
+stairs fraction & 0.000 & 0.000 & 0.507 \\
 bus fraction & 0.000 & 0.000 & 0.506 \\
-plant other fraction & 0.000 & 0.000 & 0.505 \\
-water other fraction & 0.000 & 0.000 & 0.505 \\
-floor stone fraction & 0.000 & 0.000 & 0.504 \\
-gravel fraction & 0.000 & 0.000 & 0.504 \\
+floor stone fraction & 0.000 & 0.000 & 0.505 \\
+gravel fraction & 0.000 & 0.000 & 0.505 \\
 straw fraction & 0.000 & 0.000 & 0.504 \\
 wood fraction & 0.000 & 0.000 & 0.504 \\
-skyscraper fraction & 0.000 & 0.000 & 0.503 \\
 roof fraction & 0.000 & 0.000 & 0.503 \\
-textile other fraction & 0.000 & 0.000 & 0.502 \\
+skyscraper fraction & 0.000 & 0.000 & 0.503 \\
+textile other fraction & 0.000 & 0.000 & 0.503 \\
+plant other fraction & 0.000 & 0.000 & 0.502 \\
+water other fraction & 0.000 & 0.000 & 0.502 \\
 floor marble fraction & 0.000 & 0.000 & 0.501 \\
-leaves fraction & 0.000 & 0.000 & 0.501 \\
-structural other fraction & 0.000 & 0.000 & 0.501 \\
 flower fraction & 0.000 & 0.000 & 0.501 \\
+structural other fraction & 0.000 & 0.000 & 0.501 \\
 stone fraction & 0.000 & 0.000 & 0.501 \\
+leaves fraction & 0.000 & 0.000 & 0.501 \\
 wall panel fraction & 0.000 & 0.000 & 0.500 \\
 window blind fraction & 0.000 & 0.000 & 0.500 \\
-mud fraction & 0.000 & 0.000 & 0.500 \\
 solid other fraction & 0.000 & 0.000 & 0.500 \\
+mud fraction & 0.000 & 0.000 & 0.500 \\
 moss fraction & 0.000 & 0.000 & 0.500 \\
 ceiling tile fraction & 0.000 & 0.000 & 0.500 \\
 waterdrops fraction & 0.000 & 0.000 & 0.500 \\
@@ -128,7 +128,7 @@ waterdrops fraction & 0.000 & 0.000 & 0.500 \\
 
 Each attribute is tested inside one device and one recording, so the day, the wearer, the time of day and the illumination are held fixed. Only windows with functioning tracking and a walking speed between 0.8 and 1.6~m\,s$^{-1}$ enter. For a continuous descriptor the association with the positional indicator is the Spearman correlation with the walking speed partialled out; for a binary annotation it is the ratio of the median indicator between the two sides, which are additionally required to have median speeds within $0.15$~m\,s$^{-1}$ of each other. The direction is then tested across the recordings with a two-sided sign test. An attribute with fewer than 6 usable recordings cannot reach $p < 0.05$ by that test at all and is marked as not testable; counting such attributes as null results would make the negative finding look stronger than the design supports.
 
-Of the 143 attributes listed, 60 are testable and 4 reach the $5$~\% level, against 3.0 expected by chance.
+Of the 141 attributes listed, 63 are testable and 4 reach the $5$~\% level, against 3.2 expected by chance.
 
 \begin{longtable}{llrrrr}
 \caption{Systematic test of scene effects on the quality of the pose, every attribute.}\label{tab:S2}\\
@@ -146,149 +146,147 @@ Family & Attribute & Recordings & Positive & Effect & $p$ \\
 \endfoot
 \bottomrule
 \endlastfoot
-objective & car fraction & 10 & 0 & $-$0.127 & 0.002 \\
-objective & pavement fraction & 12 & 2 & $-$0.096 & 0.039 \\
-objective & ceiling other fraction & 9 & 1 & $-$0.060 & 0.039 \\
-objective & light fraction & 9 & 1 & $-$0.086 & 0.039 \\
-objective & fog fraction & 10 & 2 & $-$0.048 & 0.109 \\
-objective & straw fraction & 4 & 4 & 0.057 & 0.125$^{\dagger}$ \\
-objective & building other fraction & 12 & 3 & $-$0.140 & 0.146 \\
-objective & brightness & 12 & 3 & $-$0.170 & 0.146 \\
-objective & wall wood fraction & 9 & 7 & 0.027 & 0.180 \\
-objective & wall stone fraction & 6 & 5 & 0.029 & 0.219 \\
-objective & flower fraction & 3 & 3 & 0.039 & 0.250$^{\dagger}$ \\
-objective & dirt fraction & 8 & 6 & 0.028 & 0.289 \\
-objective & water other fraction & 8 & 6 & 0.015 & 0.289 \\
-objective & mountain fraction & 10 & 3 & $-$0.042 & 0.344 \\
-objective & floor wood fraction & 10 & 7 & 0.010 & 0.344 \\
-objective & person fraction & 12 & 8 & 0.018 & 0.388 \\
-objective & sky other fraction & 12 & 4 & $-$0.033 & 0.388 \\
-objective & road fraction & 12 & 4 & $-$0.083 & 0.388 \\
-objective & contrast & 12 & 4 & $-$0.042 & 0.388 \\
-objective & entropy & 12 & 8 & 0.054 & 0.388 \\
-objective & stone fraction & 2 & 2 & 0.012 & 0.500$^{\dagger}$ \\
-objective & wall panel fraction & 2 & 2 & 0.020 & 0.500$^{\dagger}$ \\
-objective & floor marble fraction & 2 & 2 & 0.028 & 0.500$^{\dagger}$ \\
-objective & motorcycle fraction & 9 & 3 & $-$0.015 & 0.508 \\
-objective & truck fraction & 9 & 3 & $-$0.047 & 0.508 \\
-objective & plant other fraction & 9 & 6 & 0.024 & 0.508 \\
-objective & wall brick fraction & 9 & 3 & $-$0.014 & 0.508 \\
-objective & ground other fraction & 11 & 7 & 0.022 & 0.549 \\
-objective & gravel fraction & 4 & 3 & 0.035 & 0.625$^{\dagger}$ \\
-objective & textile other fraction & 4 & 3 & 0.028 & 0.625$^{\dagger}$ \\
-objective & roof fraction & 4 & 1 & $-$0.016 & 0.625$^{\dagger}$ \\
-objective & skyscraper fraction & 6 & 4 & 0.018 & 0.688 \\
-objective & bush fraction & 8 & 5 & 0.004 & 0.727 \\
-objective & rock fraction & 8 & 3 & $-$0.044 & 0.727 \\
-objective & clouds fraction & 10 & 4 & $-$0.023 & 0.754 \\
-objective & floor other fraction & 10 & 4 & $-$0.005 & 0.754 \\
-objective & tree fraction & 12 & 7 & 0.076 & 0.774 \\
-objective & metal fraction & 12 & 5 & $-$0.029 & 0.774 \\
-objective & fence fraction & 12 & 7 & 0.023 & 0.774 \\
-objective & wall concrete fraction & 12 & 7 & 0.011 & 0.774 \\
-objective & Laplacian variance & 12 & 5 & $-$0.047 & 0.774 \\
-objective & Harris corners & 12 & 5 & $-$0.046 & 0.774 \\
-objective & overexposed fraction & 12 & 5 & $-$0.047 & 0.774 \\
-objective & bus fraction & 6 & 3 & $-$0.011 & 1.000 \\
-objective & branch fraction & 7 & 4 & 0.034 & 1.000 \\
-objective & grass fraction & 12 & 6 & 0.005 & 1.000 \\
-objective & leaves fraction & 4 & 2 & 0.025 & 1.000$^{\dagger}$ \\
-objective & mud fraction & 1 & 1 & 0.007 & 1.000$^{\dagger}$ \\
+objective & car fraction & 10 & 1 & $-$0.125 & 0.021 \\
+objective & ground other fraction & 12 & 10 & 0.035 & 0.039 \\
+objective & building other fraction & 12 & 2 & $-$0.163 & 0.039 \\
+objective & plant other fraction & 9 & 8 & 0.023 & 0.039 \\
+objective & textile other fraction & 5 & 5 & 0.011 & 0.062$^{\dagger}$ \\
+objective & skyscraper fraction & 7 & 1 & $-$0.051 & 0.125 \\
+objective & wall concrete fraction & 12 & 3 & $-$0.031 & 0.146 \\
+objective & sky other fraction & 12 & 3 & $-$0.045 & 0.146 \\
+objective & road fraction & 12 & 3 & $-$0.063 & 0.146 \\
+objective & brightness & 12 & 3 & $-$0.161 & 0.146 \\
+objective & ceiling other fraction & 9 & 2 & $-$0.064 & 0.180 \\
+objective & clouds fraction & 9 & 2 & $-$0.034 & 0.180 \\
+objective & light fraction & 9 & 2 & $-$0.074 & 0.180 \\
+objective & dirt fraction & 8 & 6 & 0.042 & 0.289 \\
+objective & wall wood fraction & 10 & 7 & 0.053 & 0.344 \\
+objective & fog fraction & 10 & 3 & $-$0.076 & 0.344 \\
+objective & grass fraction & 12 & 8 & 0.008 & 0.388 \\
+objective & tree fraction & 12 & 8 & 0.118 & 0.388 \\
+objective & entropy & 12 & 8 & 0.059 & 0.388 \\
+objective & wall stone fraction & 7 & 5 & 0.063 & 0.453 \\
+objective & stairs fraction & 7 & 5 & 0.023 & 0.453 \\
+objective & floor marble fraction & 2 & 2 & 0.070 & 0.500$^{\dagger}$ \\
+objective & motorcycle fraction & 9 & 3 & $-$0.027 & 0.508 \\
+objective & wall tile fraction & 9 & 6 & 0.025 & 0.508 \\
+objective & leaves fraction & 4 & 3 & 0.028 & 0.625$^{\dagger}$ \\
+objective & roof fraction & 4 & 1 & $-$0.031 & 0.625$^{\dagger}$ \\
+objective & hill fraction & 6 & 2 & $-$0.014 & 0.688 \\
+objective & floor stone fraction & 6 & 2 & $-$0.017 & 0.688 \\
+objective & rock fraction & 8 & 3 & $-$0.061 & 0.727 \\
+objective & house fraction & 8 & 3 & $-$0.056 & 0.727 \\
+objective & person fraction & 12 & 7 & 0.054 & 0.774 \\
+objective & fence fraction & 12 & 5 & $-$0.029 & 0.774 \\
+objective & pavement fraction & 12 & 5 & $-$0.075 & 0.774 \\
+objective & Laplacian variance & 12 & 5 & $-$0.041 & 0.774 \\
+objective & overexposed fraction & 12 & 5 & $-$0.055 & 0.774 \\
+objective & bus fraction & 6 & 3 & 0.001 & 1.000 \\
+objective & truck fraction & 9 & 4 & $-$0.028 & 1.000 \\
+objective & branch fraction & 5 & 2 & $-$0.028 & 1.000$^{\dagger}$ \\
+objective & bush fraction & 8 & 4 & 0.005 & 1.000 \\
+objective & flower fraction & 3 & 2 & 0.058 & 1.000$^{\dagger}$ \\
+objective & gravel fraction & 5 & 3 & 0.033 & 1.000$^{\dagger}$ \\
+objective & metal fraction & 12 & 6 & $-$0.011 & 1.000 \\
 objective & snow fraction & 12 & 6 & $-$0.043 & 1.000 \\
-objective & solid other fraction & 1 & 0 & $-$0.047 & 1.000$^{\dagger}$ \\
-objective & wood fraction & 3 & 1 & $-$0.010 & 1.000$^{\dagger}$ \\
-objective & hill fraction & 5 & 2 & $-$0.011 & 1.000$^{\dagger}$ \\
-objective & house fraction & 8 & 4 & $-$0.005 & 1.000 \\
-objective & structural other fraction & 1 & 0 & $-$0.039 & 1.000$^{\dagger}$ \\
-objective & window blind fraction & 2 & 1 & 0.056 & 1.000$^{\dagger}$ \\
-objective & window other fraction & 9 & 4 & $-$0.001 & 1.000 \\
-objective & wall other fraction & 11 & 6 & 0.006 & 1.000 \\
-objective & wall tile fraction & 9 & 5 & 0.020 & 1.000 \\
-objective & floor stone fraction & 6 & 3 & 0.009 & 1.000 \\
-objective & floor tile fraction & 8 & 4 & $-$0.005 & 1.000 \\
-objective & stairs fraction & 6 & 3 & 0.040 & 1.000 \\
-objective & dynamic range (P99--P1) & 12 & 6 & $-$0.003 & 1.000 \\
-objective & underexposed fraction & 12 & 6 & $-$0.004 & 1.000 \\
-subjective & tex\_medium & 4 & 0 & 0.78 & 0.125$^{\dagger}$ \\
-subjective & geom\_walls & 4 & 0 & 0.56 & 0.125$^{\dagger}$ \\
-subjective & sun\_in\_fov & 4 & 0 & 0.71 & 0.125$^{\dagger}$ \\
-subjective & dynamic\_range\_extreme & 6 & 1 & 0.73 & 0.219 \\
-subjective & backlight & 3 & 0 & 0.78 & 0.250$^{\dagger}$ \\
-subjective & tex\_high & 3 & 3 & 1.34 & 0.250$^{\dagger}$ \\
-subjective & dist\_near & 3 & 3 & 1.23 & 0.250$^{\dagger}$ \\
-subjective & sur\_rough & 3 & 3 & 1.34 & 0.250$^{\dagger}$ \\
-subjective & sun\_in\_fov\_none & 3 & 3 & 1.28 & 0.250$^{\dagger}$ \\
-subjective & cont\_mov\_blur\_\_1 & 3 & 0 & 0.72 & 0.250$^{\dagger}$ \\
-subjective & movObj\_1\_4 & 8 & 2 & 0.79 & 0.289 \\
-subjective & sur\_moderate & 8 & 2 & 0.74 & 0.289 \\
-subjective & scene\_open & 5 & 4 & 1.06 & 0.375$^{\dagger}$ \\
-subjective & illum\_low & 5 & 4 & 1.11 & 0.375$^{\dagger}$ \\
-subjective & repeat\_none & 5 & 1 & 0.75 & 0.375$^{\dagger}$ \\
-subjective & refl\_metal & 5 & 1 & 0.75 & 0.375$^{\dagger}$ \\
-subjective & exposure\_under & 5 & 4 & 1.13 & 0.375$^{\dagger}$ \\
-subjective & Static & 2 & 2 & 1.10 & 0.500$^{\dagger}$ \\
-subjective & Dynamic & 2 & 0 & 0.91 & 0.500$^{\dagger}$ \\
-subjective & scene\_parking\_under & 2 & 0 & 0.85 & 0.500$^{\dagger}$ \\
-subjective & artificial & 2 & 0 & 0.80 & 0.500$^{\dagger}$ \\
-subjective & tex\_low & 2 & 2 & 1.22 & 0.500$^{\dagger}$ \\
-subjective & veget\_mov & 2 & 0 & 0.74 & 0.500$^{\dagger}$ \\
-subjective & illum\_high & 4 & 1 & 0.82 & 0.625$^{\dagger}$ \\
-subjective & natural & 4 & 3 & 1.10 & 0.625$^{\dagger}$ \\
-subjective & point\_source  & 4 & 1 & 0.85 & 0.625$^{\dagger}$ \\
-subjective & exposure\_ok & 4 & 1 & 0.92 & 0.625$^{\dagger}$ \\
-subjective & sky\_zero & 6 & 4 & 1.24 & 0.688 \\
-subjective & sky\_medium & 6 & 2 & 0.87 & 0.688 \\
-subjective & dist\_mid & 6 & 4 & 1.05 & 0.688 \\
-subjective & dist\_far & 6 & 2 & 0.81 & 0.688 \\
-subjective & movObj\_none & 6 & 4 & 1.27 & 0.688 \\
-subjective & sur\_concrete & 6 & 2 & 0.78 & 0.688 \\
-subjective & sur\_wet & 6 & 4 & 1.16 & 0.688 \\
-subjective & sur\_flat & 6 & 4 & 1.19 & 0.688 \\
-subjective & scene\_street & 1 & 0 & 0.80 & 1.000$^{\dagger}$ \\
-subjective & scene\_forest & 3 & 1 & 0.94 & 1.000$^{\dagger}$ \\
-subjective & scene\_parking\_open & 5 & 2 & 0.83 & 1.000$^{\dagger}$ \\
-subjective & afternoon & 3 & 1 & 0.45 & 1.000$^{\dagger}$ \\
-subjective & golden\_hour & 3 & 2 & 2.23 & 1.000$^{\dagger}$ \\
-subjective & clear & 3 & 1 & 0.82 & 1.000$^{\dagger}$ \\
-subjective & illum\_med & 3 & 2 & 1.45 & 1.000$^{\dagger}$ \\
-subjective & illum\_dark & 1 & 1 & 1.08 & 1.000$^{\dagger}$ \\
-subjective & mixed & 5 & 2 & 0.87 & 1.000$^{\dagger}$ \\
-subjective & flicker\_present & 3 & 1 & 0.78 & 1.000$^{\dagger}$ \\
-subjective & hard\_shadows & 3 & 1 & 0.99 & 1.000$^{\dagger}$ \\
-subjective & sky\_low & 1 & 0 & 0.74 & 1.000$^{\dagger}$ \\
-subjective & sky\_high & 1 & 0 & 0.85 & 1.000$^{\dagger}$ \\
-subjective & repeat\_mild & 3 & 2 & 1.23 & 1.000$^{\dagger}$ \\
-subjective & repeat\_strong & 1 & 1 & 1.21 & 1.000$^{\dagger}$ \\
-subjective & refl\_glass & 5 & 2 & 0.82 & 1.000$^{\dagger}$ \\
-subjective & refl\_car\_paint & 3 & 1 & 0.78 & 1.000$^{\dagger}$ \\
-subjective & geom\_large\_flat & 1 & 1 & 1.22 & 1.000$^{\dagger}$ \\
-subjective & geom\_varied & 4 & 2 & 1.14 & 1.000$^{\dagger}$ \\
-subjective & mocObj\_5\_more & 3 & 1 & 0.82 & 1.000$^{\dagger}$ \\
-subjective & sur\_asfalt & 5 & 3 & 1.05 & 1.000$^{\dagger}$ \\
-subjective & sur\_dirt & 6 & 3 & 0.94 & 1.000 \\
-subjective & sur\_gravel & 3 & 2 & 2.10 & 1.000$^{\dagger}$ \\
-subjective & sur\_grass & 5 & 2 & 0.88 & 1.000$^{\dagger}$ \\
-subjective & sur\_snow & 5 & 3 & 1.05 & 1.000$^{\dagger}$ \\
-subjective & dappled\_light & 1 & 0 & 0.64 & 1.000$^{\dagger}$ \\
-subjective & static & 1 & 0 & 0.85 & 1.000$^{\dagger}$ \\
-subjective & dynamic & 1 & 1 & 1.18 & 1.000$^{\dagger}$ \\
-subjective & cont\_in\_view\_none & 2 & 1 & 0.91 & 1.000$^{\dagger}$ \\
-subjective & cont\_in\_view\_partial & 5 & 2 & 0.97 & 1.000$^{\dagger}$ \\
-subjective & cont\_in\_view\_full & 1 & 1 & 1.03 & 1.000$^{\dagger}$ \\
-subjective & cont\_occ\_out\_of\_fov & 2 & 1 & 1.14 & 1.000$^{\dagger}$ \\
-subjective & cont\_mix & 1 & 0 & 0.64 & 1.000$^{\dagger}$ \\
-subjective & cont\_dist\_near & 1 & 1 & 1.24 & 1.000$^{\dagger}$ \\
-subjective & cont\_dist\_mid & 1 & 0 & 0.81 & 1.000$^{\dagger}$ \\
-subjective & cont\_mov\_blur & 1 & 0 & 0.64 & 1.000$^{\dagger}$ \\
-subjective & static\_\_1 & 1 & 0 & 0.85 & 1.000$^{\dagger}$ \\
-subjective & dynamic\_\_1 & 1 & 1 & 1.18 & 1.000$^{\dagger}$ \\
-subjective & cont\_in\_view\_none\_\_1 & 3 & 1 & 0.75 & 1.000$^{\dagger}$ \\
-subjective & cont\_in\_view\_partial\_\_1 & 4 & 2 & 1.01 & 1.000$^{\dagger}$ \\
-subjective & cont\_in\_view\_full\_\_1 & 1 & 1 & 1.03 & 1.000$^{\dagger}$ \\
-subjective & cont\_occ\_out\_of\_fov\_\_1 & 2 & 1 & 1.14 & 1.000$^{\dagger}$ \\
-subjective & cont\_mix\_\_1 & 1 & 0 & 0.64 & 1.000$^{\dagger}$ \\
-subjective & cont\_dist\_near\_\_1 & 1 & 1 & 1.24 & 1.000$^{\dagger}$ \\
-subjective & cont\_dist\_mid\_\_1 & 1 & 0 & 0.81 & 1.000$^{\dagger}$ \\
+objective & solid other fraction & 1 & 1 & 0.029 & 1.000$^{\dagger}$ \\
+objective & stone fraction & 2 & 1 & 0.012 & 1.000$^{\dagger}$ \\
+objective & straw fraction & 4 & 2 & $-$0.021 & 1.000$^{\dagger}$ \\
+objective & wood fraction & 3 & 1 & $-$0.013 & 1.000$^{\dagger}$ \\
+objective & mountain fraction & 11 & 5 & $-$0.071 & 1.000 \\
+objective & structural other fraction & 2 & 1 & 0.004 & 1.000$^{\dagger}$ \\
+objective & window blind fraction & 2 & 1 & 0.052 & 1.000$^{\dagger}$ \\
+objective & window other fraction & 8 & 4 & 0.003 & 1.000 \\
+objective & wall brick fraction & 9 & 4 & $-$0.041 & 1.000 \\
+objective & wall other fraction & 11 & 6 & 0.005 & 1.000 \\
+objective & wall panel fraction & 2 & 1 & $-$0.010 & 1.000$^{\dagger}$ \\
+objective & water other fraction & 8 & 4 & 0.006 & 1.000 \\
+objective & floor other fraction & 10 & 5 & 0.001 & 1.000 \\
+objective & floor tile fraction & 8 & 4 & 0.007 & 1.000 \\
+objective & floor wood fraction & 10 & 5 & $-$0.011 & 1.000 \\
+objective & contrast & 12 & 6 & $-$0.026 & 1.000 \\
+objective & dynamic range (P99--P1) & 12 & 6 & 0.000 & 1.000 \\
+objective & Harris corners & 12 & 6 & $-$0.020 & 1.000 \\
+objective & underexposed fraction & 12 & 6 & $-$0.003 & 1.000 \\
+subjective & HMD\_tex\_medium & 4 & 0 & 0.74 & 0.125$^{\dagger}$ \\
+subjective & HMD\_geom\_walls & 4 & 0 & 0.58 & 0.125$^{\dagger}$ \\
+subjective & HMD\_sun\_in\_fov & 4 & 0 & 0.72 & 0.125$^{\dagger}$ \\
+subjective & HMD\_dynamic\_range\_extreme & 6 & 1 & 0.73 & 0.219 \\
+subjective & HMD\_exposure\_under & 6 & 5 & 1.18 & 0.219 \\
+subjective & HMD\_backlight & 3 & 0 & 0.78 & 0.250$^{\dagger}$ \\
+subjective & HMD\_tex\_high & 3 & 3 & 1.33 & 0.250$^{\dagger}$ \\
+subjective & RIGHT\_cont\_mov\_blur & 3 & 0 & 0.72 & 0.250$^{\dagger}$ \\
+subjective & HMD\_movObj\_1\_4 & 8 & 2 & 0.78 & 0.289 \\
+subjective & HMD\_sur\_moderate & 8 & 2 & 0.80 & 0.289 \\
+subjective & HMD\_illum\_low & 5 & 4 & 1.07 & 0.375$^{\dagger}$ \\
+subjective & HMD\_repeat\_none & 5 & 1 & 0.75 & 0.375$^{\dagger}$ \\
+subjective & HMD\_refl\_metal & 5 & 1 & 0.72 & 0.375$^{\dagger}$ \\
+subjective & HMD\_exposure\_ok & 5 & 1 & 0.88 & 0.375$^{\dagger}$ \\
+subjective & HMD\_dist\_far & 7 & 2 & 0.75 & 0.453 \\
+subjective & HMD\_scene\_parking\_under & 2 & 0 & 0.85 & 0.500$^{\dagger}$ \\
+subjective & HMD\_artificial & 2 & 0 & 0.82 & 0.500$^{\dagger}$ \\
+subjective & HMD\_veget\_mov & 2 & 0 & 0.74 & 0.500$^{\dagger}$ \\
+subjective & HMD\_illum\_high & 4 & 1 & 0.83 & 0.625$^{\dagger}$ \\
+subjective & HMD\_natural & 4 & 3 & 1.48 & 0.625$^{\dagger}$ \\
+subjective & HMD\_point\_source & 4 & 1 & 0.68 & 0.625$^{\dagger}$ \\
+subjective & HMD\_sur\_rough & 4 & 3 & 1.20 & 0.625$^{\dagger}$ \\
+subjective & HMD\_sun\_in\_fov\_none & 4 & 3 & 1.26 & 0.625$^{\dagger}$ \\
+subjective & HMD\_sky\_zero & 6 & 4 & 1.18 & 0.688 \\
+subjective & HMD\_dist\_mid & 6 & 4 & 1.14 & 0.688 \\
+subjective & HMD\_sur\_concrete & 6 & 2 & 0.85 & 0.688 \\
+subjective & HMD\_sur\_wet & 6 & 4 & 1.17 & 0.688 \\
+subjective & LEFT\_cont\_in\_view\_partial & 6 & 2 & 0.92 & 0.688 \\
+subjective & HMD\_Static & 2 & 1 & 1.00 & 1.000$^{\dagger}$ \\
+subjective & HMD\_Dynamic & 2 & 1 & 0.99 & 1.000$^{\dagger}$ \\
+subjective & HMD\_scene\_open & 5 & 3 & 1.01 & 1.000$^{\dagger}$ \\
+subjective & HMD\_scene\_street & 1 & 0 & 0.80 & 1.000$^{\dagger}$ \\
+subjective & HMD\_scene\_forest & 3 & 2 & 1.79 & 1.000$^{\dagger}$ \\
+subjective & HMD\_scene\_parking\_open & 5 & 2 & 0.83 & 1.000$^{\dagger}$ \\
+subjective & HMD\_afternoon & 3 & 1 & 0.44 & 1.000$^{\dagger}$ \\
+subjective & HMD\_golden\_hour & 3 & 2 & 2.25 & 1.000$^{\dagger}$ \\
+subjective & HMD\_clear & 2 & 1 & 1.03 & 1.000$^{\dagger}$ \\
+subjective & HMD\_illum\_med & 3 & 2 & 1.47 & 1.000$^{\dagger}$ \\
+subjective & HMD\_illum\_dark & 2 & 1 & 1.10 & 1.000$^{\dagger}$ \\
+subjective & HMD\_mixed & 4 & 2 & 0.93 & 1.000$^{\dagger}$ \\
+subjective & HMD\_flicker\_present & 3 & 1 & 0.82 & 1.000$^{\dagger}$ \\
+subjective & HMD\_hard\_shadows & 2 & 1 & 1.01 & 1.000$^{\dagger}$ \\
+subjective & HMD\_sky\_medium & 7 & 3 & 0.82 & 1.000 \\
+subjective & HMD\_sky\_high & 1 & 0 & 0.92 & 1.000$^{\dagger}$ \\
+subjective & HMD\_tex\_low & 2 & 1 & 0.98 & 1.000$^{\dagger}$ \\
+subjective & HMD\_repeat\_mild & 3 & 2 & 1.20 & 1.000$^{\dagger}$ \\
+subjective & HMD\_repeat\_strong & 1 & 1 & 1.03 & 1.000$^{\dagger}$ \\
+subjective & HMD\_refl\_glass & 5 & 2 & 0.93 & 1.000$^{\dagger}$ \\
+subjective & HMD\_refl\_car\_paint & 3 & 1 & 0.61 & 1.000$^{\dagger}$ \\
+subjective & HMD\_geom\_large\_flat & 1 & 1 & 1.22 & 1.000$^{\dagger}$ \\
+subjective & HMD\_geom\_varied & 4 & 2 & 1.14 & 1.000$^{\dagger}$ \\
+subjective & HMD\_dist\_near & 1 & 1 & 1.15 & 1.000$^{\dagger}$ \\
+subjective & HMD\_movObj\_none & 7 & 4 & 1.33 & 1.000 \\
+subjective & HMD\_movObj\_5\_more & 2 & 1 & 1.04 & 1.000$^{\dagger}$ \\
+subjective & HMD\_sur\_asfalt & 5 & 3 & 1.05 & 1.000$^{\dagger}$ \\
+subjective & HMD\_sur\_dirt & 6 & 3 & 0.99 & 1.000 \\
+subjective & HMD\_sur\_gravel & 3 & 2 & 2.09 & 1.000$^{\dagger}$ \\
+subjective & HMD\_sur\_grass & 6 & 3 & 0.95 & 1.000 \\
+subjective & HMD\_sur\_snow & 5 & 3 & 1.05 & 1.000$^{\dagger}$ \\
+subjective & HMD\_sur\_flat & 6 & 3 & 1.00 & 1.000 \\
+subjective & HMD\_dappled\_light & 1 & 0 & 0.64 & 1.000$^{\dagger}$ \\
+subjective & LEFT\_static & 1 & 0 & 0.92 & 1.000$^{\dagger}$ \\
+subjective & LEFT\_dynamic & 1 & 1 & 1.09 & 1.000$^{\dagger}$ \\
+subjective & LEFT\_cont\_in\_view\_none & 2 & 1 & 0.91 & 1.000$^{\dagger}$ \\
+subjective & LEFT\_cont\_in\_view\_full & 3 & 2 & 2.03 & 1.000$^{\dagger}$ \\
+subjective & LEFT\_cont\_occ\_out\_of\_fov & 3 & 1 & 0.49 & 1.000$^{\dagger}$ \\
+subjective & LEFT\_cont\_mix & 1 & 0 & 0.64 & 1.000$^{\dagger}$ \\
+subjective & LEFT\_cont\_dist\_near & 1 & 1 & 2.01 & 1.000$^{\dagger}$ \\
+subjective & LEFT\_cont\_dist\_mid & 1 & 0 & 0.50 & 1.000$^{\dagger}$ \\
+subjective & LEFT\_cont\_mov\_blur & 1 & 0 & 0.64 & 1.000$^{\dagger}$ \\
+subjective & RIGHT\_static & 1 & 0 & 0.92 & 1.000$^{\dagger}$ \\
+subjective & RIGHT\_dynamic & 1 & 1 & 1.09 & 1.000$^{\dagger}$ \\
+subjective & RIGHT\_cont\_in\_view\_none & 3 & 1 & 0.86 & 1.000$^{\dagger}$ \\
+subjective & RIGHT\_cont\_in\_view\_partial & 5 & 2 & 0.86 & 1.000$^{\dagger}$ \\
+subjective & RIGHT\_cont\_in\_view\_full & 3 & 2 & 2.03 & 1.000$^{\dagger}$ \\
+subjective & RIGHT\_cont\_occ\_out\_of\_fov & 2 & 1 & 0.81 & 1.000$^{\dagger}$ \\
+subjective & RIGHT\_cont\_mix & 1 & 0 & 0.64 & 1.000$^{\dagger}$ \\
+subjective & RIGHT\_cont\_dist\_near & 1 & 1 & 2.01 & 1.000$^{\dagger}$ \\
+subjective & RIGHT\_cont\_dist\_mid & 1 & 0 & 0.50 & 1.000$^{\dagger}$ \\
 \end{longtable}
 \noindent\footnotesize $^{\dagger}$~not testable: fewer than 6 usable recordings, so $p<0.05$ is unreachable. Effect is the median partial Spearman correlation for the objective descriptors and the median ratio of the indicator between the two sides for the subjective annotations.\normalsize
 
@@ -414,18 +412,80 @@ $f_c$ [Hz] & \multicolumn{3}{c}{Standing [mm]} & \multicolumn{3}{c}{Walking [mm]
 
 \section*{Table S6: Controller excursions}
 
-Summary by recording of the events in which the reported controller position departs from its recording-specific offset to the headset by more than 0.3~m and then returns, while the device continues to report the controller as tracked. The complete list of the 250 individual events is provided as Online Resource 2.
+Summary by recording of the events in which a controller position jumps by more than 0.3~m between consecutive samples while the headset moves by less than 0.1~m, and the controller-to-headset offset departs by at least 0.3~m from its value over the preceding 5~s. The offset is computed after aligning the headset and controller frames separately for every interval between two re-anchorings of the headset world. An event ends when the offset is back within 0.3~m of that value; events that do not return within 120~s are counted as not recovered. A jump of both controllers within 1~s by the same vector is one event. The complete list of the 239 events is provided as Online Resource 2, one row per event, with the columns: \texttt{hand}, the controller that triggered the event; \texttt{t}, time within the recording in seconds; \texttt{jump\_m}, the single-sample jump in metres; \texttt{excursion\_m}, the largest departure of the offset in metres; \texttt{recovered} and \texttt{recover\_s}, whether and after how many seconds the offset returned; \texttt{both\_hands}, whether the other controller jumped with it; \texttt{tracked\_at\_jump} and \texttt{tracked\_frac}, the controller tracking flag at the jump and the percentage of event samples reported as tracked; \texttt{headset\_tracked\_frac}, the same for the headset; \texttt{piece}, the frame-alignment interval; and \texttt{dev}, \texttt{month}, \texttt{seg}, identifying the recording.
 
 {\footnotesize\setlength{\tabcolsep}{4pt}
-\begin{longtable}{llrrrrrr}
+\begin{longtable}{llrrrrrrrr}
 \caption{Controller excursions by recording.}\label{tab:S6}\\
 \toprule
-Device & Session & Seg. & Events & Median [m] & Max [m] & Recovery [s] & Tracked [\%] \\
+Device & Session & Seg. & Events & Both & Recov. & Median [m] & Max [m] & Recovery [s] & Tracked [\%] \\
+\midrule
+\endfirsthead
+\multicolumn{10}{l}{\footnotesize\itshape continued from the previous page}\\
+\toprule
+Device & Session & Seg. & Events & Both & Recov. & Median [m] & Max [m] & Recovery [s] & Tracked [\%] \\
+\midrule
+\endhead
+\midrule
+\multicolumn{10}{r}{\footnotesize\itshape continued on the next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Quest~3 & Jan & 2 & 4 & 2 & 4 & 0.74 & 1.0 & 0.1 & 88 \\
+Quest~3 & Jan & 3 & 11 & 4 & 11 & 0.56 & 4.3 & 0.5 & 75 \\
+Quest~3 & Jan & 4 & 3 & 1 & 3 & 1.21 & 1.6 & 13.7 & 99 \\
+Quest~3 & Jan & 5 & 2 & 1 & 2 & 0.50 & 0.7 & 3.3 & 97 \\
+Quest~3 & Jan & 7 & 6 & 0 & 6 & 0.35 & 1.5 & 0.1 & 94 \\
+Quest~3 & Jan & 8 & 5 & 2 & 5 & 0.40 & 1.0 & 0.2 & 95 \\
+Quest~Pro & Jan & 1 & 31 & 7 & 27 & 15.61 & 42.3 & 1.7 & 100 \\
+Quest~Pro & Jan & 2 & 10 & 0 & 8 & 4.42 & 20.2 & 1.6 & 100 \\
+Quest~Pro & Jan & 3 & 3 & 0 & 3 & 0.55 & 3.4 & 1.9 & 100 \\
+Quest~Pro & Jan & 4 & 4 & 0 & 2 & 16.80 & 28.4 & 0.6 & 100 \\
+Quest~Pro & Jan & 5 & 11 & 6 & 10 & 15.20 & 30.1 & 2.2 & 100 \\
+Quest~Pro & Jan & 7 & 3 & 0 & 3 & 0.37 & 0.4 & 1.0 & 100 \\
+Quest~Pro & Jan & 8 & 1 & 0 & 1 & 0.91 & 0.9 & 12.1 & 100 \\
+Quest~2 & Feb & 1 & 20 & 14 & 20 & 0.46 & 1.3 & 0.5 & 100 \\
+Quest~2 & Feb & 2 & 1 & 1 & 1 & 0.81 & 0.8 & 0.1 & 75 \\
+Quest~2 & Feb & 3 & 3 & 3 & 2 & 0.70 & 0.7 & 24.4 & 99 \\
+Quest~2 & Feb & 4 & 3 & 3 & 3 & 0.48 & 0.7 & 3.7 & 100 \\
+Quest~3 & Feb & 1 & 12 & 2 & 12 & 0.55 & 1.6 & 0.7 & 98 \\
+Quest~3 & Feb & 2 & 3 & 0 & 3 & 0.48 & 2.1 & 1.0 & 98 \\
+Quest~3 & Feb & 3 & 5 & 2 & 5 & 0.47 & 1.3 & 3.4 & 97 \\
+Quest~3 & Feb & 4 & 19 & 1 & 19 & 0.64 & 1.7 & 0.2 & 75 \\
+Quest~3 & Feb & 5 & 2 & 0 & 2 & 0.56 & 0.8 & 2.8 & 59 \\
+Quest~Pro & Feb & 1 & 33 & 3 & 28 & 0.80 & 28.9 & 1.6 & 100 \\
+Quest~Pro & Feb & 2 & 2 & 0 & 1 & 191.94 & 377.6 & 1.7 & 100 \\
+Quest~Pro & Feb & 3 & 29 & 4 & 25 & 14.83 & 32.1 & 1.5 & 100 \\
+Quest~Pro & Feb & 4 & 13 & 2 & 12 & 0.86 & 1.9 & 0.8 & 100 \\
+\end{longtable}
+}
+
+
+\section*{Table S7: Repeatability measurement, visit by visit}
+
+Every return to a marked point in the supplementary measurement of
+Section~3.7, in the order in which it occurred. The path is the distance walked
+since the first visit to that mark, and the deviation is the displacement of the
+reported position of that mark from where it was reported on the first visit,
+split into its horizontal and vertical parts. The first visit to each mark is the
+reference and is therefore zero by construction. The last column records how the
+position of the visit was taken: from the median over an interval in which the
+wearer stood still at the mark, or, where there was no such interval, from a
+fixed window around the turnaround, which additionally carries however far the
+wearer walked past the mark before pivoting. The main text quotes only the final
+value of each accumulation; this table shows that the deviation grows with the
+distance walked rather than scattering about a fixed value.
+
+{\footnotesize\setlength{\tabcolsep}{5pt}
+\begin{longtable}{llrrrrrl}
+\caption{Repeatability measurement, every visit to a marked point.}\label{tab:S7}\\
+\toprule
+Device & Mark & Visit & Path [m] & Horiz. [m] & Vert. [m] & Total [m] & Position from \\
 \midrule
 \endfirsthead
 \multicolumn{8}{l}{\footnotesize\itshape continued from the previous page}\\
 \toprule
-Device & Session & Seg. & Events & Median [m] & Max [m] & Recovery [s] & Tracked [\%] \\
+Device & Mark & Visit & Path [m] & Horiz. [m] & Vert. [m] & Total [m] & Position from \\
 \midrule
 \endhead
 \midrule
@@ -433,31 +493,71 @@ Device & Session & Seg. & Events & Median [m] & Max [m] & Recovery [s] & Tracked
 \endfoot
 \bottomrule
 \endlastfoot
-Quest~3 & Jan & 1 & 2 & 0.43 & 0.5 & 2.1 & 89 \\
-Quest~3 & Jan & 2 & 6 & 0.47 & 1.0 & 2.5 & 99 \\
-Quest~3 & Jan & 3 & 9 & 0.51 & 3.0 & 0.5 & 43 \\
-Quest~3 & Jan & 4 & 3 & 0.55 & 0.6 & 1.4 & 100 \\
-Quest~3 & Jan & 7 & 2 & 0.55 & 0.7 & 0.3 & 66 \\
-Quest~3 & Jan & 8 & 2 & 0.47 & 0.6 & 0.1 & 75 \\
-Quest~Pro & Jan & 1 & 27 & 0.71 & 30.5 & 1.8 & 100 \\
-Quest~Pro & Jan & 2 & 14 & 6.32 & 19.2 & 2.6 & 100 \\
-Quest~Pro & Jan & 3 & 1 & 0.35 & 0.4 & 0.7 & 100 \\
-Quest~Pro & Jan & 4 & 8 & 0.64 & 15.0 & 2.3 & 100 \\
-Quest~Pro & Jan & 5 & 16 & 14.22 & 29.4 & 2.2 & 100 \\
-Quest~Pro & Jan & 7 & 1 & 0.34 & 0.3 & 0.6 & 100 \\
-Quest~Pro & Jan & 8 & 1 & 0.31 & 0.3 & 2.3 & 100 \\
-Quest~2 & Feb & 1 & 13 & 0.35 & 0.6 & 0.4 & 100 \\
-Quest~2 & Feb & 2 & 1 & 0.32 & 0.3 & 0.1 & 100 \\
-Quest~2 & Feb & 3 & 5 & 0.43 & 0.5 & 1.0 & 100 \\
-Quest~2 & Feb & 4 & 2 & 0.42 & 0.5 & 0.4 & 100 \\
-Quest~3 & Feb & 1 & 28 & 19.91 & 37.6 & 20.0 & 94 \\
-Quest~3 & Feb & 2 & 2 & 0.91 & 1.4 & 1.4 & 75 \\
-Quest~3 & Feb & 3 & 4 & 0.41 & 0.5 & 0.6 & 78 \\
-Quest~3 & Feb & 4 & 9 & 0.37 & 1.2 & 0.1 & 55 \\
-Quest~Pro & Feb & 1 & 59 & 3.06 & 463.0 & 7.4 & 100 \\
-Quest~Pro & Feb & 2 & 2 & 188.63 & 371.8 & 9.7 & 100 \\
-Quest~Pro & Feb & 3 & 25 & 14.27 & 31.1 & 1.8 & 100 \\
-Quest~Pro & Feb & 4 & 8 & 0.59 & 1.5 & 1.7 & 100 \\
+Quest~2 & A & 1 & 0 & 0.00 & +0.00 & 0.00 & turnaround \\
+Quest~2 & A & 2 & 357 & 0.79 & +0.15 & 0.81 & turnaround \\
+Quest~2 & A & 3 & 712 & 3.33 & +0.09 & 3.33 & turnaround \\
+Quest~2 & A & 4 & 1068 & 3.71 & +0.62 & 3.76 & turnaround \\
+Quest~2 & A & 5 & 1420 & 3.36 & +0.49 & 3.39 & turnaround \\
+Quest~2 & A & 6 & 1776 & 3.62 & +0.21 & 3.63 & turnaround \\
+Quest~2 & A & 7 & 2131 & 3.12 & +0.09 & 3.12 & turnaround \\
+Quest~2 & A & 8 & 2487 & 3.97 & +0.39 & 3.99 & turnaround \\
+Quest~2 & A & 9 & 2837 & 2.43 & +0.17 & 2.44 & turnaround \\
+Quest~2 & A & 10 & 3198 & 1.69 & +0.60 & 1.79 & turnaround \\
+\addlinespace
+Quest~2 & B & 1 & 0 & 0.00 & +0.00 & 0.00 & turnaround \\
+Quest~2 & B & 2 & 356 & 1.19 & +0.02 & 1.19 & turnaround \\
+Quest~2 & B & 3 & 712 & 3.41 & +0.36 & 3.43 & turnaround \\
+Quest~2 & B & 4 & 1066 & 4.13 & +0.30 & 4.14 & turnaround \\
+Quest~2 & B & 5 & 1419 & 4.85 & +0.06 & 4.85 & turnaround \\
+Quest~2 & B & 6 & 1776 & 6.88 & +0.10 & 6.88 & turnaround \\
+Quest~2 & B & 7 & 2131 & 8.97 & +0.58 & 8.99 & turnaround \\
+Quest~2 & B & 8 & 2482 & 7.84 & +0.95 & 7.89 & turnaround \\
+Quest~2 & B & 9 & 2837 & 8.26 & +0.39 & 8.27 & turnaround \\
+\addlinespace
+Quest~3 & A & 1 & 0 & 0.00 & +0.00 & 0.00 & turnaround \\
+Quest~3 & A & 2 & 354 & 4.48 & +0.34 & 4.49 & turnaround \\
+Quest~3 & A & 3 & 713 & 3.69 & +0.27 & 3.70 & turnaround \\
+Quest~3 & A & 4 & 1069 & 8.13 & +0.51 & 8.15 & turnaround \\
+Quest~3 & A & 5 & 1421 & 6.49 & +0.92 & 6.56 & turnaround \\
+Quest~3 & A & 6 & 1775 & 8.84 & +0.92 & 8.89 & turnaround \\
+Quest~3 & A & 7 & 2130 & 11.27 & +0.60 & 11.29 & turnaround \\
+Quest~3 & A & 8 & 2483 & 8.69 & +1.60 & 8.83 & turnaround \\
+Quest~3 & A & 9 & 2836 & 12.43 & +1.70 & 12.55 & turnaround \\
+Quest~3 & A & 10 & 3187 & 10.88 & +1.96 & 11.05 & turnaround \\
+\addlinespace
+Quest~3 & B & 1 & 0 & 0.00 & +0.00 & 0.00 & turnaround \\
+Quest~3 & B & 2 & 354 & 3.11 & +0.61 & 3.17 & stand \\
+Quest~3 & B & 3 & 714 & 4.65 & +0.44 & 4.67 & turnaround \\
+Quest~3 & B & 4 & 1065 & 5.20 & +1.66 & 5.46 & turnaround \\
+Quest~3 & B & 5 & 1422 & 10.01 & +1.81 & 10.17 & turnaround \\
+Quest~3 & B & 6 & 1775 & 8.04 & +1.74 & 8.22 & turnaround \\
+Quest~3 & B & 7 & 2131 & 13.07 & +1.06 & 13.11 & turnaround \\
+Quest~3 & B & 8 & 2484 & 10.45 & +1.98 & 10.63 & turnaround \\
+Quest~3 & B & 9 & 2836 & 12.95 & +2.45 & 13.18 & turnaround \\
+Quest~3 & B & 10 & 3189 & 16.04 & +2.58 & 16.25 & turnaround \\
+\addlinespace
+Quest~Pro & A & 1 & 0 & 0.00 & +0.00 & 0.00 & turnaround \\
+Quest~Pro & A & 2 & 355 & 1.28 & +0.33 & 1.32 & turnaround \\
+Quest~Pro & A & 3 & 706 & 1.46 & +0.44 & 1.53 & turnaround \\
+Quest~Pro & A & 4 & 1056 & 2.68 & +0.89 & 2.82 & turnaround \\
+Quest~Pro & A & 5 & 1404 & 1.75 & +1.09 & 2.07 & turnaround \\
+Quest~Pro & A & 6 & 1753 & 3.66 & +0.36 & 3.68 & turnaround \\
+Quest~Pro & A & 7 & 2102 & 3.68 & +0.02 & 3.68 & turnaround \\
+Quest~Pro & A & 8 & 2450 & 4.03 & +0.16 & 4.03 & turnaround \\
+Quest~Pro & A & 9 & 2800 & 5.29 & +0.28 & 5.30 & turnaround \\
+Quest~Pro & A & 10 & 3148 & 6.35 & +0.26 & 6.36 & turnaround \\
+Quest~Pro & A & 11 & 3501 & 5.35 & +0.62 & 5.38 & turnaround \\
+\addlinespace
+Quest~Pro & B & 1 & 0 & 0.00 & +0.00 & 0.00 & turnaround \\
+Quest~Pro & B & 2 & 355 & 1.87 & +0.72 & 2.00 & turnaround \\
+Quest~Pro & B & 3 & 708 & 2.71 & +1.47 & 3.08 & turnaround \\
+Quest~Pro & B & 4 & 1055 & 1.79 & +1.39 & 2.26 & turnaround \\
+Quest~Pro & B & 5 & 1404 & 2.34 & +1.55 & 2.81 & turnaround \\
+Quest~Pro & B & 6 & 1754 & 3.35 & +0.23 & 3.36 & turnaround \\
+Quest~Pro & B & 7 & 2102 & 3.49 & +0.07 & 3.49 & turnaround \\
+Quest~Pro & B & 8 & 2450 & 3.36 & +0.37 & 3.38 & turnaround \\
+Quest~Pro & B & 9 & 2800 & 4.55 & +0.05 & 4.55 & turnaround \\
+Quest~Pro & B & 10 & 3150 & 3.38 & +0.24 & 3.39 & turnaround \\
 \end{longtable}
 }
 

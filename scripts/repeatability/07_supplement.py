@@ -106,7 +106,7 @@ def main():
 
     body = tex.read_text(encoding="utf-8")
     if r"\label{tab:S7}" in body:
-        body = body[:body.index(r"\section*{Table S7")]
+        body = body[:body.index(r"\section*{Table S7")] + "\n" + r"\end{document}"
     body = body.replace(
         "and a summary of the controller excursions. Each table is referenced from the\nmain text.",
         "a summary of the controller excursions, and the repeatability measurement of\n"

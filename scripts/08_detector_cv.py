@@ -28,7 +28,7 @@ Also reported: the number of distinct failure events in February (episodes of
 different devices that overlap in time on the same segment count once), and the
 probability of loss above and below the brightness levels quoted in the text.
 
-Writes out/detector_r2/*.csv.
+Writes out/detector_cv/*.csv.
 """
 import sys
 from pathlib import Path
@@ -42,7 +42,7 @@ from sklearn.metrics import roc_auc_score
 from reliability import config as C, scene
 from reliability.stats import spec_at_sens
 
-OUT = C.OUT / "detector_r2"
+OUT = C.OUT / "detector_cv"
 OUT.mkdir(parents=True, exist_ok=True)
 PRE = {"pre_1_10s": (1.0, 10.0), "pre_1_5s": (1.0, 5.0)}
 

@@ -1,19 +1,19 @@
 \begin{table}[t]
-\caption{Detection of tracking loss from scene descriptors alone, February session, 15,410 windows of which 853 (5.5\,\%) are windows with tracking lost. All figures are leave-one-segment-out cross-validated over the 14 device--segment recordings, so no window is scored by a model that has seen its own recording. Specificity is reported at two fixed sensitivity levels. The last row restricts the evaluation to the darkest quartile of windows, mean brightness below 18.2 of 255, where the base rate of tracking loss is 19\,\%.}\label{tab:detector}
+\caption{Detection of tracking loss from scene descriptors alone, February session, 15,404 windows of which 853 (5.5\,\%) are windows with tracking lost. All figures are leave-one-segment-out cross-validated over the 14 device--segment recordings, so no window is scored by a model that has seen its own recording. Specificity is reported at two fixed sensitivity levels. The last row restricts the evaluation to the darkest quartile of windows, mean brightness below 18.2 of 255, where the base rate of tracking loss is 19\,\%.}\label{tab:detector}
 \begin{tabular}{lccc}
 \toprule
 Feature set & AUC & \multicolumn{2}{c}{Specificity} \\
 \cmidrule(l){3-4}
  & & at 80\,\% sens. & at 90\,\% sens. \\
 \midrule
-Brightness alone & 0.861 & 90\,\% & 31\,\% \\
-Photometric (8 descriptors) & 0.808 & 65\,\% & 34\,\% \\
-Photometric $+$ semantic (66) & 0.891 & 86\,\% & 73\,\% \\
+Brightness alone & 0.869 & 91\,\% & 35\,\% \\
+Photometric (8 descriptors) & 0.874 & 81\,\% & 61\,\% \\
+Photometric $+$ semantic (66) & 0.910 & 90\,\% & 78\,\% \\
 \addlinespace
-\quad transfer to Quest~2 & 0.894 & -- & -- \\
-\quad transfer to Quest~3 & 0.944 & -- & -- \\
-\quad transfer to Quest~Pro & 0.839 & -- & -- \\
-\quad within dark windows only & 0.796 & -- & -- \\
+\quad transfer to Quest~2 & 0.917 & -- & -- \\
+\quad transfer to Quest~3 & 0.964 & -- & -- \\
+\quad transfer to Quest~Pro & 0.805 & -- & -- \\
+\quad within dark windows only & 0.837 & -- & -- \\
 \bottomrule
 \end{tabular}
 \end{table}

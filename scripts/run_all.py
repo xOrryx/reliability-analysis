@@ -22,7 +22,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 STAGES = ["01_build.py", "02_tables.py", "03_intext.py", "04_sweep.py",
           "05_figures.py", "06_sensitivity.py", "07_supplement.py",
-          "08_detector_r2.py", "09_jitter_vs_brightness.py", "10_controller_loss_scene.py",
+          "08_detector_cv.py", "09_jitter_vs_brightness.py", "10_controller_loss_scene.py",
           "11_controller_vs_annotations.py", "12_excursions_v2.py", "13_jr_vector.py",
           "15_descriptors_preloss.py", "16_manual_vs_auto_and_bounds.py", "17_speed_regimes.py",
           "18_frame_summary.py", "19_ctrl_rel_piecewise.py", "20_ctrl_rel_ratios.py",

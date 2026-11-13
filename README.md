@@ -24,8 +24,7 @@ simultaneously along one outdoor route on two winter days, from daylight into
 complete darkness. They are what Sections 3.1 to 3.7 report, and they are handled
 by the `reliability` package.
 
-**The repeatability measurement** is supplementary, added during revision in
-answer to a reviewer. One wearer carried each headset in turn along a straight
+**The repeatability measurement** is supplementary. One wearer carried each headset in turn along a straight
 170 m stretch and walked it out and back ten times, on a lit route chosen so that
 tracking would not be lost. It is what Section 3.8 reports, and it is handled by
 the `repeatability` package. It was recorded on a later Horizon OS build than the
@@ -63,7 +62,7 @@ reliability/
   excursions.py   controller excursions with piecewise frame alignment
   scene.py        per-frame descriptors joined onto the pose windows
   annotations.py  manual scene annotations on the same window grid
-  detect.py       leave-one-segment-out detection of tracking loss
+  detect.py       cross-validated detection of tracking loss (one recording held out)
   stats.py        block bootstrap, partial correlation, sign test, ROC helpers
 repeatability/
   config.py       every constant of the repeatability analysis
@@ -84,7 +83,8 @@ scripts/
   08-21_*.py      analyses of the revised manuscript (detector with whole segments held
                   out, scene before a loss, controller events, vector J_r, speed regimes,
                   frame fits, differential controller jitter); each writes to out/
-  run_all.py      all of the above, then the repeatability stages if their data is present
+  run_all.py      stages 01-21 (00 is run once; its result, sync/, is committed), then the
+                  repeatability stages if their data is present
 scripts/repeatability/
   01_passes.py    visits to the marks -> out/repeatability/visits.csv
   02_drift.py     deviation, increment, legs, frame transform, and Table 10
@@ -92,8 +92,9 @@ scripts/repeatability/
   04_figures.py   drift against distance, route against time, trimming before and after
   05_controllers.py  how much of each recording the controllers were tracked at all
   06_confound.py  head pitch per round trip; whether the devices overlap at all
+  07_supplement.py  the repeatability table appended to Online Resource 1
   check_pitch.py  pitch stability within a recording, run on demand
-  run_all.py      the six stages, in order
+  run_all.py      the seven stages, in order
 out_reference/
   the result of one complete run of both, kept so a later run can be diffed
 ```
@@ -208,8 +209,9 @@ through the winter pipeline instead.
 
 ## Versions
 
-`v1-submission` is the code of the first submission; `v2-revision` is the code of
-the revised manuscript. The revision measures the offset between each video and
+`v1-submission` is the code of the first submission; `v2.1-revision` is the code of
+the revised manuscript (`v2-revision` is an earlier state of the revision, which
+counted part of the paired controller events twice). The revision measures the offset between each video and
 its pose log instead of assuming it, aligns the headset and controller frames
 between re-anchorings of the headset world, computes the rotational indicator from
 the angular velocity vector, evaluates the detector with whole segments held out

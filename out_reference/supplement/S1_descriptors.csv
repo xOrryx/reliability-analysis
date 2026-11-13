@@ -1,68 +1,68 @@
 descriptor,column,loss,normal,auc
-underexposed fraction,UnderexposedFrac,0.847165798611111,0.0406208038330078,0.9015622059251899
-brightness,Brightness,3.3922271050347197,60.82097244262695,0.8940071535100608
-entropy,Entropy,1.08519411661346,6.02790197856061,0.8885190053314291
-contrast,Contrast,14.7340935898962,45.8034337794464,0.8296838695539811
-dynamic range (P99--P1),DynamicRangeP,30.0,179.0,0.8002553490458859
-Harris corners,Corners,40.0,98.5,0.7701834426836947
-sky other fraction,SegFrac_sky_other,0.677027587890625,0.2696142578125,0.7559606610904412
-tree fraction,SegFrac_tree,0.0,0.006033935546875001,0.7305141827964792
-building other fraction,SegFrac_building_other,0.0,0.0,0.7113013556040889
-snow fraction,SegFrac_snow,0.0,0.0,0.696288052600921
-road fraction,SegFrac_road,0.0,0.0,0.6753317455793496
-pavement fraction,SegFrac_pavement,0.0,0.0,0.6495630911545438
-overexposed fraction,OverexposedFrac,0.0003572048611110668,0.0010556640624999568,0.6346455430369085
-car fraction,SegFrac_car,0.0,0.0,0.6303343182368923
-metal fraction,SegFrac_metal,0.0,0.0,0.622354368617331
-wall concrete fraction,SegFrac_wall_concrete,0.0,0.0,0.6163078381856792
-wall other fraction,SegFrac_wall_other,0.0028125,0.0,0.593582723402631
-light fraction,SegFrac_light,0.0,0.0,0.591208863954857
-grass fraction,SegFrac_grass,0.0,0.0,0.5907221971985294
-mountain fraction,SegFrac_mountain,0.0,0.0,0.5890419365326309
-ground other fraction,SegFrac_ground_other,0.0,0.0,0.5771260101274682
-fence fraction,SegFrac_fence,0.0,0.0,0.5634514232405403
-person fraction,SegFrac_person,0.101971435546875,0.063021240234375,0.5608744973975852
-Laplacian variance,Focus_LapVar,64.16779057292041,63.0974589323606,0.5495911652950793
-house fraction,SegFrac_house,0.0,0.0,0.5424194545579446
-rock fraction,SegFrac_rock,0.0,0.0,0.5417066484251865
-clouds fraction,SegFrac_clouds,0.0,0.0,0.5404450838483413
-ceiling other fraction,SegFrac_ceiling_other,0.0,0.0,0.5361433217893261
-truck fraction,SegFrac_truck,0.0,0.0,0.5350907831211438
-dynamic range (max--min),DynamicRange,255.0,255.0,0.5325850895710851
-fog fraction,SegFrac_fog,0.0,0.0,0.5305317553078527
-wall tile fraction,SegFrac_wall_tile,0.0,0.0,0.5299855739506767
-floor tile fraction,SegFrac_floor_tile,0.0,0.0,0.5260229806893241
-window other fraction,SegFrac_window_other,0.0,0.0,0.523443679094373
-floor other fraction,SegFrac_floor_other,0.0,0.0,0.5212699465520229
-bush fraction,SegFrac_bush,0.0,0.0,0.5196444892499638
-dirt fraction,SegFrac_dirt,0.0,0.0,0.5191381319389575
-wall brick fraction,SegFrac_wall_brick,0.0,0.0,0.5179295184447346
-motorcycle fraction,SegFrac_motorcycle,0.0,0.0,0.5169907340034778
-floor wood fraction,SegFrac_floor_wood,0.0,0.0,0.5153750213113008
-wall wood fraction,SegFrac_wall_wood,0.0,0.0,0.5129490966545305
-wall stone fraction,SegFrac_wall_stone,0.0,0.0,0.5116438826681321
-branch fraction,SegFrac_branch,0.0,0.0,0.5091384307199712
-hill fraction,SegFrac_hill,0.0,0.0,0.5067665040873807
-stairs fraction,SegFrac_stairs,0.0,0.0,0.5064573744590232
-bus fraction,SegFrac_bus,0.0,0.0,0.5059421584117607
-plant other fraction,SegFrac_plant_other,0.0,0.0,0.5050054678536191
-water other fraction,SegFrac_water_other,0.0,0.0,0.5047876637426663
-floor stone fraction,SegFrac_floor_stone,0.0,0.0,0.5044308580064574
-gravel fraction,SegFrac_gravel,0.0,0.0,0.5043965102699732
-straw fraction,SegFrac_straw,0.0,0.0,0.5040530329051315
-wood fraction,SegFrac_wood,0.0,0.0,0.5036408600673216
-skyscraper fraction,SegFrac_skyscraper,0.0,0.0,0.5027478189187333
-roof fraction,SegFrac_roof,0.0,0.0,0.5025073847633441
-textile other fraction,SegFrac_textile_other,0.0,0.0,0.501616075095024
-floor marble fraction,SegFrac_floor_marble,0.0,0.0,0.50123651851343
-leaves fraction,SegFrac_leaves,0.0,0.0,0.5011648835507039
-structural other fraction,SegFrac_structural_other,0.0,0.0,0.50082434567562
-flower fraction,SegFrac_flower,0.0,0.0,0.5007899979391358
-stone fraction,SegFrac_stone,0.0,0.0,0.5005839115202309
-wall panel fraction,SegFrac_wall_panel,0.0,0.0,0.5003778251013258
-window blind fraction,SegFrac_window_blind,0.0,0.0,0.5002404341553892
-mud fraction,SegFrac_mud,0.0,0.0,0.5000343477364841
-solid other fraction,SegFrac_solid_other,0.0,0.0,0.5000343477364841
+underexposed fraction,UnderexposedFrac,0.8471804470486115,0.040884494781494155,0.90279175730138
+brightness,Brightness,3.2341981336805548,61.03955459594725,0.8989206657458914
+entropy,Entropy,1.060162537913365,6.0262843795852845,0.8962391485081013
+contrast,Contrast,13.8450432864053,45.73386661386985,0.8403490556681302
+dynamic range (P99--P1),DynamicRangeP,25.0,179.0,0.8086901848154565
+Harris corners,Corners,39.0,99.0,0.773617038281412
+sky other fraction,SegFrac_sky_other,0.677066650390625,0.2701318359375,0.755687418058149
+tree fraction,SegFrac_tree,0.0,0.005987548828125,0.7353645499441146
+building other fraction,SegFrac_building_other,0.0,0.0,0.7136527843249796
+snow fraction,SegFrac_snow,0.0,3.662109375e-06,0.6988206496566267
+road fraction,SegFrac_road,0.0,0.0,0.6787736838284683
+pavement fraction,SegFrac_pavement,0.0,0.0,0.651845354855296
+overexposed fraction,OverexposedFrac,0.0003670428240740741,0.0010562065972222227,0.635765274951996
+car fraction,SegFrac_car,0.0,0.0,0.6288292469797179
+metal fraction,SegFrac_metal,0.0,0.0,0.6280873038783505
+wall concrete fraction,SegFrac_wall_concrete,0.0,0.0,0.6230254697811467
+grass fraction,SegFrac_grass,0.0,0.0,0.5980833633378915
+wall other fraction,SegFrac_wall_other,0.0029357910156249997,0.0,0.5939412840941144
+mountain fraction,SegFrac_mountain,0.0,0.0,0.5885947256055286
+light fraction,SegFrac_light,0.0,0.0,0.5862949759196803
+ground other fraction,SegFrac_ground_other,0.0,0.0,0.5827771714202775
+person fraction,SegFrac_person,0.10988037109375,0.063087158203125,0.5638600796342057
+fence fraction,SegFrac_fence,0.0,0.0,0.5636468586093639
+ceiling other fraction,SegFrac_ceiling_other,0.0,0.0,0.5433165783153614
+house fraction,SegFrac_house,0.0,0.0,0.5428492887086798
+rock fraction,SegFrac_rock,0.0,0.0,0.5413797434628399
+Laplacian variance,Focus_LapVar,65.2897214515207,63.030010252008694,0.5404597469078923
+clouds fraction,SegFrac_clouds,0.0,0.0,0.5404466547421878
+dynamic range (max--min),DynamicRange,255.0,255.0,0.535484401671511
+truck fraction,SegFrac_truck,0.0,0.0,0.5336548017270056
+wall tile fraction,SegFrac_wall_tile,0.0,0.0,0.5303071953817606
+fog fraction,SegFrac_fog,0.0,0.0,0.5294731237174211
+floor tile fraction,SegFrac_floor_tile,0.0,0.0,0.5257303756694225
+window other fraction,SegFrac_window_other,0.0,0.0,0.5249093961707871
+floor other fraction,SegFrac_floor_other,0.0,0.0,0.5220041438920051
+dirt fraction,SegFrac_dirt,0.0,0.0,0.5207346469381292
+bush fraction,SegFrac_bush,0.0,0.0,0.5204235770809916
+floor wood fraction,SegFrac_floor_wood,0.0,0.0,0.5203865161811514
+motorcycle fraction,SegFrac_motorcycle,0.0,0.0,0.5202391588206996
+wall brick fraction,SegFrac_wall_brick,0.0,0.0,0.5177994639543674
+wall wood fraction,SegFrac_wall_wood,0.0,0.0,0.5129887980207546
+wall stone fraction,SegFrac_wall_stone,0.0,0.0,0.5119235791354546
+branch fraction,SegFrac_branch,0.0,0.0,0.5097244175658031
+hill fraction,SegFrac_hill,0.0,0.0,0.5069411037042127
+stairs fraction,SegFrac_stairs,0.0,0.0,0.5065974847089547
+bus fraction,SegFrac_bus,0.0,0.0,0.5058758848189128
+floor stone fraction,SegFrac_floor_stone,0.0,0.0,0.5046732183355096
+gravel fraction,SegFrac_gravel,0.0,0.0,0.5045701326369322
+straw fraction,SegFrac_straw,0.0,0.0,0.5039859803449935
+wood fraction,SegFrac_wood,0.0,0.0,0.503539275651158
+roof fraction,SegFrac_roof,0.0,0.0,0.5027489519620645
+skyscraper fraction,SegFrac_skyscraper,0.0,0.0,0.5027489519620645
+textile other fraction,SegFrac_textile_other,0.0,0.0,0.5027145900625387
+plant other fraction,SegFrac_plant_other,0.0,0.0,0.5022345708424336
+water other fraction,SegFrac_water_other,0.0,0.0,0.5022089504812397
+floor marble fraction,SegFrac_floor_marble,0.0,0.0,0.5012026664834033
+flower fraction,SegFrac_flower,0.0,0.0,0.5008246855886194
+structural other fraction,SegFrac_structural_other,0.0,0.0,0.5007903236890936
+stone fraction,SegFrac_stone,0.0,0.0,0.5005154284928871
+leaves fraction,SegFrac_leaves,0.0,0.0,0.5005123669402916
+wall panel fraction,SegFrac_wall_panel,0.0,0.0,0.5003779808947839
+window blind fraction,SegFrac_window_blind,0.0,0.0,0.5002748951962064
+solid other fraction,SegFrac_solid_other,0.0,0.0,0.5000343618995258
+mud fraction,SegFrac_mud,0.0,0.0,0.5
 moss fraction,SegFrac_moss,0.0,0.0,0.5
 ceiling tile fraction,SegFrac_ceiling_tile,0.0,0.0,0.5
 waterdrops fraction,SegFrac_waterdrops,0.0,0.0,0.5

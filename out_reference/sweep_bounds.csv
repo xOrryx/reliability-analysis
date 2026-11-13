@@ -1,0 +1,5 @@
+quantity,n,max_abs_median_rho,min_median_ratio,max_median_ratio,passed,expected
+testable objective,48,0.16338334767163218,,,,
+testable texture descriptors,5,0.0594345413945679,,,,
+testable subjective,15,,0.726821773385881,1.3258403057730908,,
+all testable,63,,,,4.0,3.1500000000000004

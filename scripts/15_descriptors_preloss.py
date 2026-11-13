@@ -13,7 +13,7 @@ the rendered controllers (the median brightness of
 3.4 in loss windows), so the descriptors of loss windows describe the headset's
 reaction rather than the scene. The scene that the device was in is described
 by the windows shortly BEFORE the loss. Here three classes of February windows
-(tracking held throughout, panel closed), on the measured video-to-pose clock:
+(panel closed), on the measured video-to-pose clock:
 
   pre      window centre 1-10 s before the onset of an episode
   normal   not within 10 s before an onset, not inside a loss

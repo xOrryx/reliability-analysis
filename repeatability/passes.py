@@ -32,8 +32,9 @@ def along_route(P: np.ndarray) -> np.ndarray:
     Hc = H - H.mean(axis=0)
     _, _, Vt = np.linalg.svd(Hc, full_matrices=False)
     s = Hc @ Vt[0]
-    # Orient so that the recording starts at the low end, for readability only.
-    return s if s[-1] >= s[0] or s.mean() >= s[0] else s
+    # The sign of the principal axis is arbitrary, so the labels A and B of the two
+    # marks follow it; visits.csv shows which mark each recording starts at.
+    return s
 
 
 def speed(t: np.ndarray, P: np.ndarray) -> np.ndarray:

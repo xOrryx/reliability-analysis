@@ -41,6 +41,9 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 def main():
     W = pd.read_pickle(C.OUT / "windows.pkl")
+    if not (C.OUT / "annotations.pkl").exists():
+        print("no manual annotations (out/annotations.pkl), stage skipped")
+        return
     A = pd.read_pickle(C.OUT / "annotations.pkl")
     X = pd.read_csv(C.OUT / "controller_events.csv")
     keys = ["dev", "month", "seg", "t"]

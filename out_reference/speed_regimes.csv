@@ -1,0 +1,12 @@
+quantity,value
+mode_standing_m_s,0.025
+mode_walking_m_s,1.4250000000000003
+trough_m_s,0.925
+share standing <0.15,0.16693210393964794
+share transition 0.15-0.8,0.369907795473596
+share walking >0.8,0.46316010058675605
+walking speed P5,0.8473121434705694
+walking speed P25,1.046763110190781
+walking speed P50,1.248244923596773
+walking speed P75,1.4400249528059712
+walking speed P95,1.7270802950808601

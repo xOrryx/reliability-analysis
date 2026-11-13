@@ -14,7 +14,7 @@ tracking reported by the device.
 
 Why the filter and not a detrend. Within a one-second window the wearer's head
 does not move in a straight line: it oscillates vertically at the step cadence,
-about 1.7 to 1.9 Hz, so the window holds roughly two full periods and a fitted
+about 1.6 to 1.9 Hz, so the window holds roughly two full periods and a fitted
 straight line removes almost none of it. A 5 Hz high-pass lies above that band
 and below the band the estimator noise occupies.
 

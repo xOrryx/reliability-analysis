@@ -1,0 +1,7 @@
+regime,subset,dev,dark_bin,dark_median,dark_ci,bright_median,ratio
+standing,all,MQ3,<5,0.8267651051130764,"(np.float64(0.35), np.float64(0.91))",0.3119582822643196,2.6502425231735485
+standing,all,MQPro,<5,0.5982371960204313,"(np.float64(0.6), np.float64(0.62))",0.31132128110047763,1.9216071381491997
+standing,away_from_loss,MQ3,5-15,0.5481318795790434,"(np.float64(0.36), np.float64(1.28))",0.3098446522496601,1.7690538648941445
+standing,away_from_loss,MQPro,<5,,"(np.float64(nan), np.float64(nan))",0.3047758223672425,
+walking,all,MQ3,5-15,,"(np.float64(nan), np.float64(nan))",1.5507572111165133,
+walking,away_from_loss,MQ3,5-15,,"(np.float64(nan), np.float64(nan))",1.5539760682341834,

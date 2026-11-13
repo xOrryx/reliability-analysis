@@ -6,7 +6,7 @@
 # Part of: Stability of Localization and Tracking on Meta Quest Devices:
 #          Statistics, Sources of Failures and VR App for Identification
 # -----------------------------------------------------------------------------
-"""Stage 17: justification of the 0.15 and 0.8 m/s regime thresholds (R2 minor).
+"""Stage 17: justification of the 0.15 and 0.8 m/s regime thresholds.
 
 Histogram of the mean headset speed of every tracked window (both sessions, all
 devices), its modes and the trough between them, and the share of windows in the

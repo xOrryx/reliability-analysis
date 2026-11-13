@@ -33,8 +33,12 @@ def _model():
     return HistGradientBoostingClassifier(random_state=C.SEED)
 
 
-def leave_one_segment_out(D: pd.DataFrame, cols, target: str = "FAIL") -> np.ndarray:
-    """Cross-validated probability for every window."""
+def leave_one_recording_out(D: pd.DataFrame, cols, target: str = "FAIL") -> np.ndarray:
+    """Cross-validated probability for every window, one device-segment recording held out.
+
+    The recordings of the other devices of the same segment stay in training; the stricter
+    split that holds out whole segments is in scripts/08_detector_cv.py.
+    """
     y = D[target].to_numpy()
     g = groups(D)
     X = D[cols].to_numpy(float)

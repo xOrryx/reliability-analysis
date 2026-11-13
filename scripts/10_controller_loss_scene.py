@@ -13,8 +13,8 @@ which the headset is tracked throughout but a controller is reported untracked
 for more than 80 % of the samples (the same criterion as for the headset).
 For every scene descriptor: median during controller loss and otherwise, the
 univariate AUC (oriented >= 0.5) and its direction, per device and pooled.
-Windows with the panel open are excluded. A leave-one-segment-out detector on
-the full descriptor set is reported as well, to see whether the scene predicts
+Windows with the panel open are excluded. A cross-validated detector (one recording
+or one whole segment held out) on the full descriptor set is reported as well, to see whether the scene predicts
 controller loss beyond darkness (brightness alone vs. full set).
 
 Writes out/controller_loss/*.csv.

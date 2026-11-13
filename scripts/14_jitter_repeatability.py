@@ -29,7 +29,6 @@ from reliability.stats import bootstrap_median_arrays
 from repeatability import config as RC
 from repeatability.io import device_logs, load_device
 
-RC.DATA_DIR = Path(C.DATA_ROOT) / "repeatability"
 
 
 def main():

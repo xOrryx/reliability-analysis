@@ -8,8 +8,8 @@
 # -----------------------------------------------------------------------------
 """Every constant of the analysis, in one place.
 
-Nothing in this package hard-codes a numeric threshold anywhere else. If a value
-appears in the manuscript, it appears here.
+The thresholds of the analysis are set here; the parameters of the revised
+controller-event definition are at the top of excursions.py.
 """
 from pathlib import Path
 

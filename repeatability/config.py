@@ -19,7 +19,8 @@ from pathlib import Path
 # The repeatability measurement is a separate measurement on separate recordings,
 # so it keeps its own data and output directories underneath the shared ones
 # rather than mixing its results into those of the winter sessions.
-DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "repeatability"
+from reliability.config import DATA_ROOT as _DATA_ROOT   # one data root for both packages
+DATA_DIR = Path(_DATA_ROOT) / "repeatability"
 OUT = Path(__file__).resolve().parents[1] / "out" / "repeatability"
 
 DEVICES = ("MQ2", "MQ3", "MQPro")
@@ -98,5 +99,6 @@ PERIOD_TOL_S = 0.15
 PERIOD_GAP_RANGE_S = (1.0, 120.0)
 
 # ----------------------------------------------------------------- validity
-MIN_TRACK_FRAC = 0.999  # a pass is analysed only if the pose was tracked throughout
-UI_MAX = 0.5            # samples with the monitoring panel open are excluded
+# The tracked share and the panel share of every visit are reported in visits.csv
+# (track_frac, ui_frac); no visit is excluded on them, since the route was chosen so
+# that tracking was not lost and the reported position is logged with the panel open.

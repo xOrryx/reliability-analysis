@@ -9,8 +9,8 @@
 """Stage 16.
 
 (a) Table 7 again, with both cross-validation groupings: one device-segment
-    recording held out (as before) and one whole segment held out (all devices,
-    on the windows where both descriptions exist (February).
+    recording held out and one whole segment held out (all devices), on the
+    windows where both descriptions exist (February).
 (b) The effect sizes of the scene sweep (out/sweep.csv) that bound the negative
     result in Section 3.2: the largest |median partial rho| among testable
     automatic descriptors, the same among the texture descriptors, and the most
@@ -42,6 +42,9 @@ def cv(D, cols, groups):
 
 def main():
     S = pd.read_pickle(C.OUT / "scene.pkl")
+    if not (C.OUT / "annotations.pkl").exists():
+        print("no manual annotations (out/annotations.pkl), stage skipped")
+        return
     A = pd.read_pickle(C.OUT / "annotations.pkl")
     attrs = [c for c in A.columns if c not in ("t", "dev", "month", "seg", "FAIL", "ui")]
     M = pd.merge(S, A[attrs + ["t", "dev", "seg", "month"]], on=["dev", "seg", "month", "t"], how="inner")

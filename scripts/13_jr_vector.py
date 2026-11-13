@@ -10,8 +10,7 @@
 
 Filtering the magnitude of the angular rate rectifies the
 gait oscillation and creates harmonics above 5 Hz; filtering the vector avoids
-this. windows.py now computes both (hp_rot = vector, hp_rotmag = magnitude, as
-in the first revision). February, tracked throughout, panel closed; medians
+this. windows.py computes both (hp_rot = vector, hp_rotmag = magnitude). February, tracked throughout, panel closed; medians
 with 95 % block-bootstrap intervals over segments, standing and walking.
 Writes out/jr_vector.csv.
 """

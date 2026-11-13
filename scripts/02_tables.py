@@ -170,7 +170,7 @@ def table_detector(S):
     y = S.FAIL.to_numpy()
     probs, rows = {}, []
     for name, cols in sets.items():
-        p = detect.leave_one_segment_out(S, cols)
+        p = detect.leave_one_recording_out(S, cols)
         probs[name] = p
         rows.append(dict(feature_set=name, n_features=len(cols), **detect.summarise(y, p)))
     tr = detect.transfer(S, sets["full"])
@@ -190,7 +190,7 @@ def tex_detector(T, TR, M):
     L = [r"\begin{table}[t]",
          r"\caption{Detection of tracking loss from scene descriptors alone, February "
          f"session, {M['n']:,} windows of which {M['fail']} ({100*M['base_rate']:.1f}\\,\\%) "
-         r"are windows with tracking lost. All figures are leave-one-segment-out "
+         r"are windows with tracking lost. All figures are leave-one-recording-out "
          f"cross-validated over the {M['groups']} device--segment recordings, so no window "
          r"is scored by a model that has seen its own recording. Specificity is reported "
          r"at two fixed sensitivity levels. The last row restricts the evaluation to the "
@@ -241,8 +241,8 @@ def tex_controllers(T):
         return "--" if not np.isfinite(m) else f"{m:.2f} ({lo:.2f}--{hi:.2f})"
     L = [r"\begin{table}[t]",
          r"\caption{Differential high-frequency jitter of the controllers with respect to "
-         r"the head, in millimetres, after correcting the constant yaw offset between the "
-         r"two reported coordinate frames. Because both poses are differenced in a common "
+         r"the head, in millimetres, after aligning the two reported coordinate frames piece by "
+         r"piece between re-anchorings. Because both poses are differenced in a common "
          r"frame, body translation cancels and the residual reflects the controller "
          r"estimate rather than the walker. Both controllers are pooled. Medians with "
          r"95\,\% block-bootstrap confidence intervals over segments.}\label{tab:ctrl_rel}",
@@ -310,10 +310,10 @@ def table_subj_vs_obj(S, A):
     for name, cols in (("Manual annotations", attrs),
                        ("Automatic descriptors", desc),
                        ("Both combined", attrs + desc)):
-        p = detect.leave_one_segment_out(M, cols)
+        p = detect.leave_one_recording_out(M, cols)
         rows.append(dict(feature_set=name, n_features=len(cols), n=len(M),
                          **detect.summarise(M.FAIL.to_numpy(), p)))
-    p = detect.leave_one_segment_out(A, attrs)
+    p = detect.leave_one_recording_out(A, attrs)
     rows.append(dict(feature_set="Manual annotations, both sessions",
                      n_features=len(attrs), n=len(A),
                      **detect.summarise(A.FAIL.to_numpy(), p)))
@@ -326,7 +326,7 @@ def tex_subj_vs_obj(T, M):
         return f"{100*x:.0f}\\,\\%"
     L = [r"\begin{table}[t]", r"\centering",
          r"\caption{Detection of tracking loss from manual annotations and from automatic "
-         r"descriptors. All figures are leave-one-segment-out cross-validated. The first "
+         r"descriptors. All figures are leave-one-recording-out cross-validated. The first "
          r"three rows are computed on the windows for which both feature sets are "
          f"available (February session, $n={M['n_paired']:,}$, of which {M['fail_paired']} "
          r"with loss of tracking); the values for the automatic descriptors therefore "

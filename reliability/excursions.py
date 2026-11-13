@@ -42,7 +42,8 @@ Here
 4. a candidate of the other hand within PAIR_S whose jump vector agrees within
    PAIR_TOL_M is the same event: both controllers moved together, which points
    at the frame rather than at one controller, and it is reported once with
-   both_hands = True;
+   both_hands = True; until the event ends, further candidates of either hand
+   belong to it, as they do for a single hand;
 5. tracked_at_jump (the flag in the jump sample, which is required by the
    candidate rule) and tracked_frac (over the whole event) are both reported.
 """
@@ -206,7 +207,7 @@ def recording_events(path):
         last_end[hand] = j_end
         if partner is not None:
             used.add(partner)
-            last_end[other] = max(last_end[other], cands[partner]["i"])
+            last_end[other] = max(last_end[other], j_end)
     return pd.DataFrame(events), pd.DataFrame(fits)
 
 

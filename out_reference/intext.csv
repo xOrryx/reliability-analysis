@@ -1,7 +1,7 @@
 section,key,value,note
-3,exposure_s,12548.0,
+3,exposure_s,12496.0,
 3,windows_total,24999,
-3,windows_with_scene,15410,
+3,windows_with_scene,15404,
 2.4.2,rate_median_hz,35.7,
 2.4.2,rate_january_mqpro_hz,45.5,
 2.4.2,gait_peak_hz_MQ3,1.63,43 recordings
@@ -29,13 +29,13 @@ section,key,value,note
 3.2,precursor_rest_pct_20s,3.53,
 3.3,base_rate_pct,5.5,
 3.3,failures_in_darkness_pct,87.0,mean brightness below 20 of 255
-3.3,lit_failure_snow_median,0.41,
-3.3,lit_normal_snow_median,0.04,
-3.3,lit_incidence_snow_high_pct,1.9,
+3.3,lit_failure_snow_median,0.42,
+3.3,lit_normal_snow_median,0.05,
+3.3,lit_incidence_snow_high_pct,1.8,
 3.3,lit_incidence_snow_low_pct,0.6,
 3.3,lit_failures_devices,MQPro,
-3.3,precision_at_80_pct,25.0,about one in 3.9 flagged windows
-3.3,p_loss_darkest_bin,0.42,brightness below 5
+3.3,precision_at_80_pct,31.0,about one in 3.2 flagged windows
+3.3,p_loss_darkest_bin,0.44,brightness below 5
 2.4.1,yaw_fits,60,
 2.4.1,yaw_near_multiple_of_45,57,
 2.4.1,yaw_multiples_observed,"[-135, -45, 0]",
@@ -46,12 +46,18 @@ section,key,value,note
 3.4,controller_jumps,1277,
 3.4,jumps_at_irregular_interval_pct,0.5,
 3.4,implied_hand_speed_median_ms,18.7,
-3.4,controller_events,250,
-3.4,events_MQ2,"n=21, median excursion 0.39 m, max 0.6 m, median recovery 0.5 s",
-3.4,events_MQ3,"n=67, median excursion 1.20 m, max 37.6 m, median recovery 2.5 s",
-3.4,events_MQPro,"n=162, median excursion 5.13 m, max 463.0 m, median recovery 2.7 s",
-3.4,tracked_during_events_median_pct,100.0,
-3.4,events_with_headset_tracking_ok,247,
+3.4,controller_events,233,
+3.4,controller_events_both_hands,56,
+3.4,controller_events_recovered,213,
+3.4,events_MQ2,"n=26, both hands 21, recovered 25, median excursion 0.50 m, max 1.3 m, median recovery 0.8 s, tracked throughout 16",
+3.4,events_MQ3,"n=69, both hands 15, recovered 69, median excursion 0.59 m, max 4.3 m, median recovery 0.4 s, tracked throughout 23",
+3.4,events_MQPro,"n=138, both hands 20, recovered 119, median excursion 1.48 m, max 377.6 m, median recovery 1.7 s, tracked throughout 134",
+3.4,events_with_headset_tracking_ok,228,
+2.4.1,frame_pieces,92,yaw fits per piece between re-anchorings
+2.4.1,frame_pieces_near_multiple_of_45,90,
+2.4.1,frame_pieces_multiples,"[-135, -45, 0]",
+2.4.1,frame_pieces_resid_max_m,0.31,
+2.4.1,recordings_with_reanchoring,12,
 3.4,coupling_rho_MQ2,0.93,
-3.4,coupling_rho_MQ3,0.78,
+3.4,coupling_rho_MQ3,0.77,
 3.4,coupling_rho_MQPro,0.72,
