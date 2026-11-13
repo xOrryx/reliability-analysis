@@ -1,3 +1,11 @@
+# -----------------------------------------------------------------------------
+# Stage 19. Differential controller jitter with piecewise frame alignment.
+#
+# Author:  Petr Šopák <Petr.Sopak@vut.cz>
+#          Brno University of Technology, CEITEC and FEEC
+# Part of: Stability of Localization and Tracking on Meta Quest Devices:
+#          Statistics, Sources of Failures and VR App for Identification
+# -----------------------------------------------------------------------------
 """Differential controller jitter with the piecewise frame alignment.
 
 The first version aligned the controller and headset frames with one yaw per

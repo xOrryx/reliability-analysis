@@ -21,13 +21,13 @@ reason the paper does.
 
 **The winter sessions** are the study proper: three headsets carried
 simultaneously along one outdoor route on two winter days, from daylight into
-complete darkness. They are what Sections 3.1 to 3.6 report, and they are handled
+complete darkness. They are what Sections 3.1 to 3.7 report, and they are handled
 by the `reliability` package.
 
 **The repeatability measurement** is supplementary, added during revision in
 answer to a reviewer. One wearer carried each headset in turn along a straight
 170 m stretch and walked it out and back ten times, on a lit route chosen so that
-tracking would not be lost. It is what Section 3.7 reports, and it is handled by
+tracking would not be lost. It is what Section 3.8 reports, and it is handled by
 the `repeatability` package. It was recorded on a later Horizon OS build than the
 winter sessions and under deliberately favourable conditions, so it characterises
 the pose the runtime delivers rather than its behaviour in an adverse scene, and
@@ -59,6 +59,8 @@ reliability/
   config.py       every constant of the winter analysis; nothing hard-coded elsewhere
   windows.py      pose logs to windowed indicators, and episodes of tracking loss
   frames.py       controller frame correction, differential jitter, excursions
+  sync.py         video time to pose-log time, from the measured offsets
+  excursions.py   controller excursions with piecewise frame alignment
   scene.py        per-frame descriptors joined onto the pose windows
   annotations.py  manual scene annotations on the same window grid
   detect.py       leave-one-segment-out detection of tracking loss
@@ -71,6 +73,7 @@ repeatability/
   drift.py        deviation, increment, leg distance, rigid frame decomposition
   jumps.py        step changes of the reported position and their direction
 scripts/
+  00_video_offsets.py  offset between each video and its pose log -> sync/
   01_build.py     everything that reads raw data -> out/*.pkl, out/*.csv
   02_tables.py    the manuscript tables -> out/tex/*.tex and out/*.csv
   03_intext.py    every number in the running text -> out/intext.csv
@@ -78,6 +81,9 @@ scripts/
   05_figures.py   the four figures -> out/figures/
   06_sensitivity.py  the indicator against the high-pass cut-off
   07_supplement.py   Online Resource 1 and 2
+  08-21_*.py      analyses of the revised manuscript (detector with whole segments held
+                  out, scene before a loss, controller events, vector J_r, speed regimes,
+                  frame fits, differential controller jitter); each writes to out/
   run_all.py      all of the above, then the repeatability stages if their data is present
 scripts/repeatability/
   01_passes.py    visits to the marks -> out/repeatability/visits.csv
@@ -105,7 +111,8 @@ Data_raw/<device>/Data/<month>/measHMD_<segment>.csv
 Data_processed/time_sync/header_video.csv
 Data_processed/time_sync/<device>/February/sync_video_<segment>.csv
     one row per video frame: Time_s and 67 scene descriptors.
-    Time_s = 0 is the first sample of the matching pose log.
+    Time_s = 0 is the first decoded video frame; it is placed on the pose clock
+    by the offset measured for each recording (sync/video_offsets.csv).
 
 Data_processed/time_sync/header_annotation.csv
 Data_processed/time_sync/<device>/<month>/sync_annotation_<segment>.csv
@@ -114,7 +121,7 @@ Data_processed/time_sync/<device>/<month>/sync_annotation_<segment>.csv
 
 repeatability/measHMD_<device>.csv
     the repeatability recordings, one continuous log per device, in the same
-    29-column layout. Optional; without them Section 3.7 is not rebuilt and
+    29-column layout. Optional; without them Section 3.8 is not rebuilt and
     scripts/run_all.py says so instead of skipping quietly.
 ```
 
@@ -188,7 +195,7 @@ devices cover over their individual round trips do not overlap at all. Where the
 cameras point decides which part of the scene the tracking solution is built on,
 so device and camera elevation are completely confounded, and the script says so
 rather than fitting a model that would extrapolate into a region where nothing
-was measured. The device difference in Section 3.7 is reported as a property of
+was measured. The device difference in Section 3.8 is reported as a property of
 each headset as it is worn, not of its estimator.
 
 ## What the repeatability package deliberately does not do
@@ -199,7 +206,20 @@ high-pass and the same windowing a second time is how two numbers that should
 agree start to disagree. If the jitter of those recordings is wanted, put them
 through the winter pipeline instead.
 
+## Versions
+
+`v1-submission` is the code of the first submission; `v2-revision` is the code of
+the revised manuscript. The revision measures the offset between each video and
+its pose log instead of assuming it, aligns the headset and controller frames
+between re-anchorings of the headset world, computes the rotational indicator from
+the angular velocity vector, evaluates the detector with whole segments held out
+and before the onset of a loss, and redefines the controller excursion events.
+Library versions are pinned in `requirements.txt`, because the detector results
+depend on the scikit-learn version at the level of about 0.02 of area under the
+curve.
+
 ## Licence and citation
 
-See the manuscript for the citation. The recordings themselves are not part of
-this repository.
+See the manuscript for the citation. The pose logs and the per-frame scene
+descriptors are published separately on Zenodo (DOI in the manuscript); the
+video recordings are not published.

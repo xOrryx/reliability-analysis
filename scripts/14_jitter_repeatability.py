@@ -6,12 +6,12 @@
 # Part of: Stability of Localization and Tracking on Meta Quest Devices:
 #          Statistics, Sources of Failures and VR App for Identification
 # -----------------------------------------------------------------------------
-"""Stage 14: J_p and J_r of the repeatability recordings (Reviewer 2, R2.1).
+"""Stage 14: J_p and J_r of the repeatability recordings.
 
 The repeatability recordings were made later, on a later Horizon OS build, by
 one wearer carrying each headset in turn along one lit route. If the device
 ordering of Section 3.1 survives there, it does not depend on the wearers or on
-the winter firmware. The recordings are trimmed exactly as in Section 3.7
+the winter firmware. The recordings are trimmed exactly as in Section 3.8
 (repeatability.io.load_device) and then put through the unchanged winter window
 code (reliability.windows.segment_windows); the indicator is not
 re-implemented. Intervals: block bootstrap over 60 s blocks of the single

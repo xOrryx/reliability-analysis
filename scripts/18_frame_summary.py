@@ -1,3 +1,11 @@
+# -----------------------------------------------------------------------------
+# Stage 18. Summary of the piecewise headset-controller frame fits.
+#
+# Author:  Petr Šopák <Petr.Sopak@vut.cz>
+#          Brno University of Technology, CEITEC and FEEC
+# Part of: Stability of Localization and Tracking on Meta Quest Devices:
+#          Statistics, Sources of Failures and VR App for Identification
+# -----------------------------------------------------------------------------
 """Summary of the piecewise head-controller frame fits (Section 2.4.1 of the paper).
 
 Input:  out/excursions_v2/frames.csv  (one row per hand and piece, from 12_excursions_v2.py)

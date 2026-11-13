@@ -9,7 +9,7 @@
 """Stage 15: scene descriptors before a loss vs. during normal operation.
 
 During a loss of tracking the headset shows a black passthrough view with only
-the rendered controllers (Reviewer 2, minor comment on the median brightness of
+the rendered controllers (the median brightness of
 3.4 in loss windows), so the descriptors of loss windows describe the headset's
 reaction rather than the scene. The scene that the device was in is described
 by the windows shortly BEFORE the loss. Here three classes of February windows

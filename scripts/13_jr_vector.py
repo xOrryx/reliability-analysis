@@ -8,7 +8,7 @@
 # -----------------------------------------------------------------------------
 """Stage 13: J_r as RMS of the high-passed angular velocity VECTOR vs. MAGNITUDE.
 
-Reviewer 2 (round 2): filtering the magnitude of the angular rate rectifies the
+Filtering the magnitude of the angular rate rectifies the
 gait oscillation and creates harmonics above 5 Hz; filtering the vector avoids
 this. windows.py now computes both (hp_rot = vector, hp_rotmag = magnitude, as
 in the first revision). February, tracked throughout, panel closed; medians

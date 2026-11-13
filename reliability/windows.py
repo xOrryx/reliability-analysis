@@ -22,8 +22,8 @@ Sampling grid. The logged intervals are irregular (frame time at 1 ms
 resolution, dropped frames on the Quest Pro). Each recording is linearly
 interpolated onto a uniform grid at its own median logging period, so that the
 filter and the window length are defined in seconds on every device. The
-timing error this leaves in the indicator is estimated in
-analysis_kolo2/R2_4a_timing (0.4-0.65 mm of J_p during walking).
+timing error this leaves in the indicator is about 0.4-0.65 mm of J_p during
+walking (Online Resource 1, Table S5).
 """
 from __future__ import annotations
 from pathlib import Path
@@ -88,7 +88,7 @@ def quat_rate_vec_deg(q_xyzw: np.ndarray, dt: float) -> np.ndarray:
     rotation vector and divided by the interval. High-pass filtering the
     components of this vector, rather than its magnitude, avoids rectifying the
     gait oscillation: the magnitude of an oscillating rate is a rectified signal
-    whose harmonics reach above the cut-off (Reviewer 2, round 2).
+    whose harmonics reach above the cut-off.
     """
     from scipy.spatial.transform import Rotation
     q = q_xyzw / np.linalg.norm(q_xyzw, axis=1, keepdims=True)

@@ -1,3 +1,11 @@
+# -----------------------------------------------------------------------------
+# Stage 21. Figure of brightness before a loss and P(loss) by brightness.
+#
+# Author:  Petr Šopák <Petr.Sopak@vut.cz>
+#          Brno University of Technology, CEITEC and FEEC
+# Part of: Stability of Localization and Tracking on Meta Quest Devices:
+#          Statistics, Sources of Failures and VR App for Identification
+# -----------------------------------------------------------------------------
 """Figure 7 with the scene BEFORE a loss in the top panel.
 
 Top: brightness distribution of normal windows, of windows centred 1-10 s before

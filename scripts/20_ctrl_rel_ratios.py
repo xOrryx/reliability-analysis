@@ -1,3 +1,11 @@
+# -----------------------------------------------------------------------------
+# Stage 20. Walking-to-standing ratios of the differential controller jitter.
+#
+# Author:  Petr Šopák <Petr.Sopak@vut.cz>
+#          Brno University of Technology, CEITEC and FEEC
+# Part of: Stability of Localization and Tracking on Meta Quest Devices:
+#          Statistics, Sources of Failures and VR App for Identification
+# -----------------------------------------------------------------------------
 """Walking / standing ratio of the differential controller jitter (Table 8),
 compared with the headset ratio of Table 3. Output: out/ctrl_rel_piecewise/ratios.csv"""
 import ast

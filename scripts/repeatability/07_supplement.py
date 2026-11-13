@@ -37,7 +37,7 @@ HEAD = r"""
 \section*{Table S7: Repeatability measurement, visit by visit}
 
 Every return to a marked point in the supplementary measurement of
-Section~3.7, in the order in which it occurred. The path is the distance walked
+Section~3.8, in the order in which it occurred. The path is the distance walked
 since the first visit to that mark, and the deviation is the displacement of the
 reported position of that mark from where it was reported on the first visit,
 split into its horizontal and vertical parts. The first visit to each mark is the
@@ -110,7 +110,7 @@ def main():
     body = body.replace(
         "and a summary of the controller excursions. Each table is referenced from the\nmain text.",
         "a summary of the controller excursions, and the repeatability measurement of\n"
-        "Section~3.7 visit by visit. Each table is referenced from the main text.")
+        "Section~3.8 visit by visit. Each table is referenced from the main text.")
     body = body.replace(r"\end{document}", table + "\n" + r"\end{document}")
     tex.write_text(body, encoding="utf-8")
     print(f"appended Table S7 to {tex}")
